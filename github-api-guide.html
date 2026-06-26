@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guide: Add books from the website</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink:       #1a1a1a;
+      --paper:     #faf8f4;
+      --accent:    #c75b3a;
+      --accent-lt: #f5e8e3;
+      --muted:     #6b6459;
+      --rule:      #e0dbd3;
+      --card:      #ffffff;
+      --code-bg:   #f0ede8;
+      --green:     #2a7a4f;
+      --green-lt:  #e6f4ed;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* ── HEADER ── */
+    header {
+      border-bottom: 2px solid var(--ink);
+      padding: 3rem 2rem 2rem;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.9rem, 5vw, 2.8rem);
+      line-height: 1.15;
+      color: var(--ink);
+    }
+
+    .intro {
+      margin-top: 0.75rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 560px;
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 6rem;
+    }
+
+    /* ── OVERVIEW PILLS ── */
+    .overview {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .pill {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.3rem 0.9rem;
+      border-radius: 20px;
+      border: 1.5px solid var(--rule);
+      background: var(--card);
+      color: var(--muted);
+    }
+
+    .pill.done {
+      border-color: var(--green);
+      background: var(--green-lt);
+      color: var(--green);
+    }
+
+    /* ── STEPS ── */
+    .step {
+      margin-bottom: 2.5rem;
+    }
+
+    .step-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.25rem;
+    }
+
+    .step-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      line-height: 1.25;
+      color: var(--ink);
+    }
+
+    .step-body {
+      padding-left: 3rem;
+    }
+
+    .step-body p {
+      font-size: 0.92rem;
+      color: #3d3730;
+      margin-bottom: 0.7rem;
+    }
+
+    /* ── SUBSTEPS ── */
+    .substeps {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin: 0.7rem 0;
+    }
+
+    .substeps li {
+      display: flex;
+      gap: 0.7rem;
+      align-items: flex-start;
+      font-size: 0.9rem;
+      color: #3d3730;
+    }
+
+    .substeps li::before {
+      content: attr(data-n);
+      flex-shrink: 0;
+      width: 1.4rem;
+      height: 1.4rem;
+      border-radius: 50%;
+      background: var(--code-bg);
+      border: 1px solid var(--rule);
+      color: var(--muted);
+      font-size: 0.7rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.18rem;
+    }
+
+    /* ── CODE / INLINE ── */
+    code {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.82rem;
+      background: var(--code-bg);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 0.05rem 0.4rem;
+      color: var(--accent);
+    }
+
+    .code-block {
+      background: #1e1c1a;
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin: 0.8rem 0;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.8rem;
+      color: #e8e4de;
+      line-height: 1.6;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    .code-block .comment { color: #7a7060; }
+    .code-block .key     { color: #c75b3a; }
+    .code-block .val     { color: #8fc48a; }
+
+    /* ── CALLOUTS ── */
+    .callout {
+      border-left: 3px solid var(--accent);
+      background: var(--accent-lt);
+      border-radius: 0 6px 6px 0;
+      padding: 0.8rem 1rem 0.8rem 1.1rem;
+      font-size: 0.88rem;
+      color: #3d3730;
+      margin: 0.8rem 0;
+    }
+
+    .callout strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .callout-ok {
+      border-color: var(--green);
+      background: var(--green-lt);
+    }
+
+    .callout-ok strong { color: var(--green); }
+
+    /* ── DIVIDER ── */
+    hr {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 2.5rem 0;
+    }
+
+    /* ── WHAT YOU GET ── */
+    .result-card {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 1.4rem 1.5rem;
+    }
+
+    .result-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .result-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .result-card li {
+      font-size: 0.88rem;
+      color: #3d3730;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .result-card li::before {
+      content: "✓";
+      color: var(--green);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      header, main { padding-left: 1.1rem; padding-right: 1.1rem; }
+      .step-body { padding-left: 0; padding-top: 0.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">Setup Guide</p>
+  <h1>Add books &amp; podcasts directly from the website</h1>
+  <p class="intro">This guide walks you through connecting your library to GitHub, so you can add entries from any device and have changes sync everywhere automatically.</p>
+</header>
+
+<main>
+
+  <div class="overview">
+    <span class="pill done">✓ Files uploaded to GitHub</span>
+    <span class="pill done">✓ GitHub Pages live</span>
+    <span class="pill">Step 1 → Create a token</span>
+    <span class="pill">Step 2 → Update your files</span>
+    <span class="pill">Step 3 → Done</span>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">1</div>
+      <h2 class="step-title">Create a GitHub personal access token</h2>
+    </div>
+    <div class="step-body">
+      <p>A personal access token (PAT) is a password the website uses to write changes back to your GitHub repository. You only need to create this once.</p>
+
+      <ol class="substeps">
+        <li data-n="a">Go to <strong>github.com</strong> and make sure you're logged in.</li>
+        <li data-n="b">Click your profile picture (top right) → <strong>Settings</strong>.</li>
+        <li data-n="c">Scroll down the left sidebar to <strong>Developer settings</strong> (very bottom).</li>
+        <li data-n="d">Click <strong>Personal access tokens</strong> → <strong>Fine-grained tokens</strong>.</li>
+        <li data-n="e">Click <strong>Generate new token</strong>.</li>
+        <li data-n="f">Give it a name, e.g. <code>my-library-editor</code>.</li>
+        <li data-n="g">Set an expiration — 1 year is a good balance of security and convenience.</li>
+        <li data-n="h">Under <strong>Repository access</strong>, choose <strong>Only select repositories</strong> and select your <code>my-library</code> repo.</li>
+        <li data-n="i">Under <strong>Permissions → Repository permissions</strong>, find <strong>Contents</strong> and set it to <strong>Read and write</strong>.</li>
+        <li data-n="j">Click <strong>Generate token</strong> at the bottom.</li>
+        <li data-n="k">Copy the token immediately — GitHub will only show it once. It looks like: <code>github_pat_abc123...</code></li>
+      </ol>
+
+      <div class="callout">
+        <strong>Important:</strong> Treat this token like a password. Anyone who has it can edit your repository. Don't share it or commit it to GitHub.
+      </div>
+
+      <div class="callout callout-ok">
+        <strong>Good news:</strong> Fine-grained tokens are scoped to only your <code>my-library</code> repo and only the Contents permission — so even if it were ever leaked, it can't access anything else in your GitHub account.
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+  <!-- STEP 2 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">2</div>
+      <h2 class="step-title">Download the updated files from Claude</h2>
+    </div>
+    <div class="step-body">
+      <p>Ask Claude to build the updated versions of <code>index.html</code> and <code>source.html</code> with the "Add book" feature and GitHub API integration built in. You'll need to provide three things:</p>
+
+      <ol class="substeps">
+        <li data-n="1">Your <strong>GitHub username</strong> (visible in the URL when you're on github.com, e.g. <code>github.com/<strong>yourusername</strong></code>).</li>
+        <li data-n="2">Your <strong>repository name</strong> (e.g. <code>my-library</code>).</li>
+        <li data-n="3">Your <strong>personal access token</strong> from Step 1.</li>
+      </ol>
+
+      <p>You can say something like:</p>
+
+      <div class="code-block"><span class="comment">Tell Claude:</span>
+
+"Please build the Add Book feature for my library.
+My GitHub username is: <span class="val">yourusername</span>
+My repository name is: <span class="val">my-library</span>
+My personal access token is: <span class="val">github_pat_abc123...</span>"</div>
+
+      <p>Claude will give you updated versions of <code>index.html</code> and <code>source.html</code> with the form and GitHub API integration included.</p>
+    </div>
+  </div>
+
+  <hr />
+
+  <!-- STEP 3 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">3</div>
+      <h2 class="step-title">Upload the updated files to GitHub</h2>
+    </div>
+    <div class="step-body">
+      <p>Replace the existing files in your repository with the new ones Claude gives you.</p>
+
+      <ol class="substeps">
+        <li data-n="a">Go to your repository on github.com.</li>
+        <li data-n="b">Click on <strong>index.html</strong> in the file list.</li>
+        <li data-n="c">Click the <strong>pencil icon</strong> (Edit this file) in the top right of the file view.</li>
+        <li data-n="d">Select all the existing content and delete it, then paste in the new content from Claude.</li>
+        <li data-n="e">Click <strong>Commit changes</strong>.</li>
+        <li data-n="f">Repeat for <strong>source.html</strong>.</li>
+      </ol>
+
+      <p>Alternatively, you can upload the files directly: on the repository home page, click <strong>Add file → Upload files</strong>, drop in both updated files, and commit.</p>
+
+      <div class="callout">
+        <strong>Note:</strong> GitHub Pages may take up to a minute to reflect the changes. If you don't see the update immediately, wait 60 seconds and refresh.
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+  <!-- STEP 4 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">4</div>
+      <h2 class="step-title">Try it out</h2>
+    </div>
+    <div class="step-body">
+      <p>Open your GitHub Pages URL on your iPhone (or any browser), tap <strong>Add book</strong>, fill in the details, and save. The page will commit the change directly to your <code>data.js</code> file in GitHub — no computer needed.</p>
+
+      <ol class="substeps">
+        <li data-n="1">Open <code>yourusername.github.io/my-library</code> in Safari.</li>
+        <li data-n="2">Tap <strong>Add book</strong>.</li>
+        <li data-n="3">Fill in the title, type (book or podcast), and any notes.</li>
+        <li data-n="4">Tap <strong>Save</strong>. The page updates automatically.</li>
+      </ol>
+
+      <div class="callout callout-ok">
+        <strong>Tip:</strong> Add the page to your iPhone Home Screen for one-tap access. In Safari, tap the share icon → <strong>Add to Home Screen</strong>.
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+  <!-- WHAT YOU GET -->
+  <div class="result-card">
+    <h3>What you'll have when this is done</h3>
+    <ul>
+      <li>An "Add book" button on the library home page</li>
+      <li>A form to enter title, type, key ideas, quotes, and episodes</li>
+      <li>Saves write directly to GitHub — synced everywhere instantly</li>
+      <li>Works on iPhone, iPad, and desktop — no app needed</li>
+      <li>Token expires in 1 year — just regenerate it when it does</li>
+    </ul>
+  </div>
+
+  <hr />
+
+  <!-- TOKEN EXPIRED -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num" style="background:var(--muted);">?</div>
+      <h2 class="step-title">When your token expires</h2>
+    </div>
+    <div class="step-body">
+      <p>GitHub will email you before the token expires. When it does, go back to <strong>Developer settings → Fine-grained tokens</strong>, find your token, and click <strong>Regenerate</strong>. Then ask Claude to update the token in your files and re-upload them to GitHub.</p>
+    </div>
+  </div>
+
+</main>
+</body>
+</html>
