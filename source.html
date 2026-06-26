@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loading…</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink:       #1a1a1a;
+      --paper:     #faf8f4;
+      --accent:    #c75b3a;
+      --accent-lt: #f5e8e3;
+      --muted:     #6b6459;
+      --rule:      #e0dbd3;
+      --card:      #ffffff;
+      --tip-bg:    #f0ede8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── BACK LINK ── */
+    .back-bar {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem 0;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.15s;
+    }
+
+    .back-link:hover { color: var(--accent); }
+
+    /* ── HEADER ── */
+    header {
+      border-bottom: 2px solid var(--ink);
+      padding: 2rem 2rem 2rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      line-height: 1.1;
+      color: var(--ink);
+    }
+
+    .source-link {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-top: 1px solid var(--rule);
+      padding-top: 2rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── NOTES GRID ── */
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .note-card {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 1.1rem 1.2rem;
+      font-size: 0.9rem;
+      color: var(--ink);
+    }
+
+    .note-card strong {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.45rem;
+    }
+
+    /* ── QUOTES ── */
+    .quote-block {
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1.2rem 1rem 1.4rem;
+      background: var(--accent-lt);
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 1.2rem;
+    }
+
+    .quote-block p {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+
+    .quote-block cite {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      font-style: normal;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    /* ── EPISODES ── */
+    .episodes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    details.episode {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+
+    details.episode[open] {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      border-color: var(--accent);
+    }
+
+    details.episode summary {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+    }
+
+    details.episode summary::-webkit-details-marker { display: none; }
+
+    .ep-num {
+      flex-shrink: 0;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: var(--tip-bg);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    details.episode[open] .ep-num {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .ep-title {
+      flex: 1;
+      font-weight: 600;
+      font-size: 0.97rem;
+      color: var(--ink);
+    }
+
+    .ep-arrow {
+      width: 1.1rem;
+      height: 1.1rem;
+      color: var(--muted);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    details.episode[open] .ep-arrow { transform: rotate(180deg); }
+
+    .episode-body {
+      padding: 0 1.25rem 1.25rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    /* ── TIPS ── */
+    .tips {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin: 1rem 0;
+    }
+
+    .tip {
+      display: flex;
+      gap: 0.7rem;
+      align-items: flex-start;
+      background: var(--tip-bg);
+      border-radius: 6px;
+      padding: 0.55rem 0.8rem;
+      font-size: 0.88rem;
+    }
+
+    .tip-icon {
+      flex-shrink: 0;
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-top: 0.15rem;
+      background: var(--accent-lt);
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      padding: 0.1rem 0.5rem;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    /* ── Q&A ── */
+    .qa-section { margin-top: 1.1rem; }
+
+    .qa-item {
+      border-top: 1px solid var(--rule);
+      padding: 0.85rem 0;
+    }
+
+    .qa-item:first-child { border-top: none; }
+
+    .qa-q {
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--ink);
+      margin-bottom: 0.35rem;
+    }
+
+    .qa-a {
+      font-size: 0.87rem;
+      color: #3d3730;
+      line-height: 1.65;
+    }
+
+    /* ── CONTROLS ── */
+    .controls {
+      display: flex;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .ctrl-btn {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.35rem 0.85rem;
+      border-radius: 20px;
+      border: 1.5px solid var(--rule);
+      background: var(--card);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .ctrl-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── NOT FOUND ── */
+    .not-found {
+      padding: 4rem 0;
+      color: var(--muted);
+    }
+
+    .not-found h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .not-found a { color: var(--accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .back-bar, header, main { padding-left: 1.1rem; padding-right: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="back-bar">
+  <a class="back-link" href="index.html">
+    <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="14 6 9 10 14 14"/><line x1="5" y1="10" x2="14" y2="10"/>
+    </svg>
+    My Library
+  </a>
+</div>
+
+<header id="page-header"></header>
+<main id="app"></main>
+
+<script src="data.js"></script>
+<script>
+  const ARROW_SVG = `<svg class="ep-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 8 10 13 15 8"/></svg>`;
+
+  function slugify(str) {
+    return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  }
+
+  function getSlugParam() {
+    return new URLSearchParams(window.location.search).get('s') || '';
+  }
+
+  function renderKeyIdeas(ideas) {
+    if (!ideas || !ideas.length) return '';
+    return `
+      <p class="section-label">Key Ideas</p>
+      <div class="notes-grid">
+        ${ideas.map(idea => `
+          <div class="note-card">
+            <strong>${idea.heading}</strong>
+            ${idea.text}
+          </div>`).join('')}
+      </div>`;
+  }
+
+  function renderQuotes(quotes) {
+    if (!quotes || !quotes.length) return '';
+    return quotes.map(q => `
+      <div class="quote-block">
+        <p>${q.text}</p>
+        <cite>— ${q.attribution}</cite>
+      </div>`).join('');
+  }
+
+  function renderEpisode(ep) {
+    const tipsHTML = (ep.tips && ep.tips.length)
+      ? `<div class="tips">${ep.tips.map((tip, i) => `
+          <div class="tip"><span class="tip-icon">Tip ${i + 1}</span>${tip}</div>`).join('')}
+        </div>` : '';
+
+    const qaHTML = (ep.qa && ep.qa.length)
+      ? `<div class="qa-section">${ep.qa.map(item => `
+          <div class="qa-item">
+            <p class="qa-q">${item.q}</p>
+            <p class="qa-a">${item.a}</p>
+          </div>`).join('')}
+        </div>` : '';
+
+    const body = (tipsHTML || qaHTML)
+      ? tipsHTML + qaHTML
+      : `<p style="font-size:0.88rem;color:var(--muted);padding-top:0.9rem;">No notes recorded for this episode yet.</p>`;
+
+    return `
+      <details class="episode">
+        <summary>
+          <span class="ep-num">${ep.number}</span>
+          <span class="ep-title">${ep.title}</span>
+          ${ARROW_SVG}
+        </summary>
+        <div class="episode-body">${body}</div>
+      </details>`;
+  }
+
+  function renderSource(source) {
+    document.title = source.title;
+
+    // Header
+    document.getElementById('page-header').innerHTML = `
+      <p class="eyebrow">${source.type}</p>
+      <h1>${source.title}</h1>
+      ${source.link ? `<a class="source-link" href="${source.link}" target="_blank" rel="noopener">${source.linkLabel || 'View source ↗'}</a>` : ''}`;
+
+    // Body
+    const hasEpisodes = source.episodes && source.episodes.length;
+    const episodesHTML = hasEpisodes ? `
+      <p class="section-label">Episodes</p>
+      <div class="controls">
+        <button class="ctrl-btn" onclick="setAll(true)">Expand all</button>
+        <button class="ctrl-btn" onclick="setAll(false)">Collapse all</button>
+      </div>
+      <div class="episodes-list" id="episodes-list">
+        ${source.episodes.map(renderEpisode).join('')}
+      </div>` : '';
+
+    document.getElementById('app').innerHTML =
+      renderKeyIdeas(source.keyIdeas) +
+      renderQuotes(source.quotes) +
+      episodesHTML;
+  }
+
+  function renderNotFound(slug) {
+    document.title = 'Not found — My Library';
+    document.getElementById('page-header').innerHTML = '';
+    document.getElementById('app').innerHTML = `
+      <div class="not-found">
+        <h2>Source not found</h2>
+        <p>No entry matched <code>${slug}</code>. <a href="index.html">Back to library</a>.</p>
+      </div>`;
+  }
+
+  function setAll(open) {
+    document.querySelectorAll('details.episode').forEach(d => d.open = open);
+  }
+
+  // ── INIT ──
+  const slug = getSlugParam();
+  const source = (sources || []).find(s => slugify(s.title) === slug);
+  source ? renderSource(source) : renderNotFound(slug);
+</script>
+</body>
+</html>
