@@ -156,6 +156,30 @@
 
     a.source-card:hover .card-arrow { color: var(--accent); }
 
+    /* ── CONTEXT MENU ── */
+    .ctx-menu {
+      position: fixed;
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+      padding: 0.4rem;
+      z-index: 500;
+      min-width: 160px;
+      display: none;
+    }
+    .ctx-menu.open { display: block; }
+    .ctx-menu-item { display: flex; align-items: center; gap: 0.6rem; padding: 0.55rem 0.8rem; border-radius: 6px; font-size: 0.88rem; font-weight: 500; cursor: pointer; color: var(--ink); transition: background 0.12s; border: none; background: none; width: 100%; text-align: left; }
+    .ctx-menu-item--danger { color: #b03a2e; }
+    .ctx-menu-item--danger:hover { background: #fdf0ef; }
+    .confirm-dialog { position: fixed; inset: 0; background: rgba(26,26,26,0.55); z-index: 600; display: none; align-items: center; justify-content: center; padding: 1rem; }
+    .confirm-dialog.open { display: flex; }
+    .confirm-box { background: var(--card); border-radius: 14px; padding: 1.8rem; max-width: 360px; width: 100%; box-shadow: 0 16px 48px rgba(0,0,0,0.18); text-align: center; }
+    .confirm-box h3 { font-family: 'DM Serif Display', serif; font-size: 1.3rem; margin-bottom: 0.5rem; }
+    .confirm-box p  { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.4rem; }
+    .confirm-actions { display: flex; gap: 0.7rem; }
+    .btn-danger { flex: 1; background: #b03a2e; color: #fff; border: none; border-radius: 24px; padding: 0.7rem; font-size: 0.88rem; font-weight: 600; cursor: pointer; }
+
     .empty {
       color: var(--muted);
       font-size: 0.9rem;
@@ -396,6 +420,26 @@
   </div>
 </div>
 
+<!-- CONTEXT MENU -->
+<div class="ctx-menu" id="ctx-menu">
+  <button class="ctx-menu-item ctx-menu-item--danger" id="ctx-delete-btn">
+    <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 17 6"/><path d="M8 6V4h4v2"/><path d="M19 6l-1 12a2 2 0 01-2 2H4a2 2 0 01-2-2L1 6"/></svg>
+    Delete
+  </button>
+</div>
+
+<!-- CONFIRM DIALOG -->
+<div class="confirm-dialog" id="confirm-dialog">
+  <div class="confirm-box">
+    <h3>Delete this entry?</h3>
+    <p id="confirm-msg">All notes and episodes will be lost. This cannot be undone.</p>
+    <div class="confirm-actions">
+      <button class="btn-secondary" onclick="closeConfirm()">Cancel</button>
+      <button class="btn-danger" id="confirm-delete-btn">Delete</button>
+    </div>
+  </div>
+</div>
+
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
@@ -567,6 +611,7 @@
       // 5. Update UI
       sources.push(newSource);
       renderGrid(sources);
+      attachCardListeners();
       closeModal();
       showToast('✓ Saved to library!', 'success');
 
