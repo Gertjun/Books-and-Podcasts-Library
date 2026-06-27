@@ -16,6 +16,7 @@
       --card:      #ffffff;
       --green:     #2a7a4f;
       --green-lt:  #e6f4ed;
+      --tip-bg:    #f0ede8;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -43,309 +44,177 @@
     }
 
     .header-text .eyebrow {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;
     }
 
     h1 {
       font-family: 'DM Serif Display', serif;
       font-size: clamp(2.4rem, 6vw, 4rem);
-      line-height: 1.05;
-      color: var(--ink);
+      line-height: 1.05; color: var(--ink);
     }
 
-    .subtitle {
-      margin-top: 0.6rem;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
+    .subtitle { margin-top: 0.6rem; color: var(--muted); font-size: 0.92rem; }
 
-    /* ── ADD BUTTON ── */
     .add-btn {
-      flex-shrink: 0;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      background: var(--accent);
-      color: #fff;
-      font-size: 0.85rem;
-      font-weight: 600;
-      padding: 0.6rem 1.2rem;
-      border-radius: 24px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      transition: opacity 0.15s, transform 0.15s;
-      white-space: nowrap;
+      flex-shrink: 0; display: inline-flex; align-items: center; gap: 0.45rem;
+      background: var(--accent); color: #fff; font-size: 0.85rem; font-weight: 600;
+      padding: 0.6rem 1.2rem; border-radius: 24px; border: none; cursor: pointer;
+      text-decoration: none; transition: opacity 0.15s, transform 0.15s; white-space: nowrap;
     }
-
     .add-btn:hover { opacity: 0.88; transform: translateY(-1px); }
 
-    /* ── MAIN ── */
-    main {
+    /* ── MAIN LAYOUT ── */
+    .page-body {
       max-width: 900px;
       margin: 0 auto;
-      padding: 3rem 2rem 6rem;
+      padding: 2.5rem 2rem 6rem;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    /* ── FILTER SIDEBAR ── */
+    .filter-sidebar {
+      position: sticky;
+      top: 1.5rem;
+    }
+
+    .filter-section { margin-bottom: 1.6rem; }
+
+    .filter-label {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.13em;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 0.6rem; display: block;
+    }
+
+    .filter-option {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.88rem; color: var(--ink);
+      padding: 0.3rem 0; cursor: pointer;
+      user-select: none;
+    }
+
+    .filter-option input[type="checkbox"] {
+      width: 1rem; height: 1rem;
+      accent-color: var(--accent); cursor: pointer; flex-shrink: 0;
+    }
+
+    .filter-divider { border: none; border-top: 1px solid var(--rule); margin: 1.2rem 0; }
+
+    .sort-select {
+      width: 100%; font-family: 'Inter', sans-serif; font-size: 0.88rem;
+      color: var(--ink); background: var(--card); border: 1.5px solid var(--rule);
+      border-radius: 8px; padding: 0.5rem 0.7rem; outline: none;
+      cursor: pointer; transition: border-color 0.15s;
+    }
+    .sort-select:focus { border-color: var(--accent); }
+
+    .filter-reset {
+      font-size: 0.78rem; font-weight: 600; color: var(--accent);
+      background: none; border: none; cursor: pointer; padding: 0;
+      margin-top: 0.8rem; text-decoration: underline; text-underline-offset: 3px;
+    }
+
+    .result-count {
+      font-size: 0.78rem; color: var(--muted);
+      margin-bottom: 1rem;
     }
 
     /* ── GRID ── */
     .library-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.1rem;
     }
 
     /* ── CARD ── */
     a.source-card {
-      display: flex;
-      flex-direction: column;
-      background: var(--card);
-      border: 1px solid var(--rule);
-      border-radius: 12px;
-      padding: 1.6rem 1.6rem 1.4rem;
-      text-decoration: none;
-      color: inherit;
+      display: flex; flex-direction: column;
+      background: var(--card); border: 1px solid var(--rule);
+      border-radius: 12px; padding: 1.4rem 1.4rem 1.2rem;
+      text-decoration: none; color: inherit;
       transition: box-shadow 0.2s, border-color 0.2s, transform 0.15s;
       position: relative;
     }
+    a.source-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.09); border-color: var(--accent); transform: translateY(-2px); }
 
-    a.source-card:hover {
-      box-shadow: 0 6px 24px rgba(0,0,0,0.09);
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    .card-type {
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-
-    .card-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.45rem;
-      line-height: 1.2;
-      color: var(--ink);
-      margin-bottom: 0.75rem;
-    }
+    .card-type { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+    .card-title { font-family: 'DM Serif Display', serif; font-size: 1.35rem; line-height: 1.2; color: var(--ink); margin-bottom: 0.6rem; }
+    .card-date { font-size: 0.72rem; color: var(--muted); margin-bottom: 0.5rem; }
 
     .card-meta {
-      display: flex;
-      gap: 1rem;
-      margin-top: auto;
-      padding-top: 1.1rem;
-      border-top: 1px solid var(--rule);
-      font-size: 0.78rem;
-      color: var(--muted);
+      display: flex; gap: 1rem; margin-top: auto;
+      padding-top: 1rem; border-top: 1px solid var(--rule);
+      font-size: 0.76rem; color: var(--muted);
     }
 
-    .card-arrow {
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      color: var(--rule);
-      transition: color 0.2s;
-    }
-
+    .card-arrow { position: absolute; top: 1.3rem; right: 1.3rem; color: var(--rule); transition: color 0.2s; }
     a.source-card:hover .card-arrow { color: var(--accent); }
+
+    .empty { color: var(--muted); font-size: 0.9rem; padding: 2rem 0; }
 
     /* ── CONTEXT MENU ── */
     .ctx-menu {
-      position: fixed;
-      background: var(--card);
-      border: 1px solid var(--rule);
-      border-radius: 10px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.14);
-      padding: 0.4rem;
-      z-index: 500;
-      min-width: 160px;
-      display: none;
+      position: fixed; background: var(--card); border: 1px solid var(--rule);
+      border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+      padding: 0.4rem; z-index: 500; min-width: 160px; display: none;
     }
     .ctx-menu.open { display: block; }
-    .ctx-menu-item { display: flex; align-items: center; gap: 0.6rem; padding: 0.55rem 0.8rem; border-radius: 6px; font-size: 0.88rem; font-weight: 500; cursor: pointer; color: var(--ink); transition: background 0.12s; border: none; background: none; width: 100%; text-align: left; }
+    .ctx-menu-item {
+      display: flex; align-items: center; gap: 0.6rem; padding: 0.55rem 0.8rem;
+      border-radius: 6px; font-size: 0.88rem; font-weight: 500; cursor: pointer;
+      color: var(--ink); transition: background 0.12s; border: none;
+      background: none; width: 100%; text-align: left;
+    }
     .ctx-menu-item--danger { color: #b03a2e; }
     .ctx-menu-item--danger:hover { background: #fdf0ef; }
+
+    /* ── CONFIRM DIALOG ── */
     .confirm-dialog { position: fixed; inset: 0; background: rgba(26,26,26,0.55); z-index: 600; display: none; align-items: center; justify-content: center; padding: 1rem; }
     .confirm-dialog.open { display: flex; }
     .confirm-box { background: var(--card); border-radius: 14px; padding: 1.8rem; max-width: 360px; width: 100%; box-shadow: 0 16px 48px rgba(0,0,0,0.18); text-align: center; }
     .confirm-box h3 { font-family: 'DM Serif Display', serif; font-size: 1.3rem; margin-bottom: 0.5rem; }
     .confirm-box p  { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.4rem; }
     .confirm-actions { display: flex; gap: 0.7rem; }
-    .btn-danger { flex: 1; background: #b03a2e; color: #fff; border: none; border-radius: 24px; padding: 0.7rem; font-size: 0.88rem; font-weight: 600; cursor: pointer; }
+    .btn-danger { flex: 1; background: #b03a2e; color: #fff; border: none; border-radius: 24px; padding: 0.7rem; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: opacity 0.15s; }
+    .btn-danger:hover { opacity: 0.88; }
+    .btn-danger:disabled { opacity: 0.5; cursor: not-allowed; }
 
-    .empty {
-      color: var(--muted);
-      font-size: 0.9rem;
-      padding: 3rem 0;
-    }
-
-    /* ── MODAL OVERLAY ── */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(26,26,26,0.55);
-      z-index: 100;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-    }
-
+    /* ── MODAL ── */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,26,0.55); z-index: 100; align-items: center; justify-content: center; padding: 1rem; }
     .modal-overlay.open { display: flex; }
-
-    .modal {
-      background: var(--card);
-      border-radius: 16px;
-      width: 100%;
-      max-width: 520px;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 2rem;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-      position: relative;
-    }
-
-    .modal-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.6rem;
-      margin-bottom: 1.5rem;
-      color: var(--ink);
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 1.2rem;
-      right: 1.2rem;
-      background: none;
-      border: none;
-      font-size: 1.3rem;
-      color: var(--muted);
-      cursor: pointer;
-      line-height: 1;
-      padding: 0.2rem;
-    }
-
+    .modal { background: var(--card); border-radius: 16px; width: 100%; max-width: 520px; max-height: 90vh; overflow-y: auto; padding: 2rem; box-shadow: 0 20px 60px rgba(0,0,0,0.2); position: relative; }
+    .modal-title { font-family: 'DM Serif Display', serif; font-size: 1.6rem; margin-bottom: 1.5rem; color: var(--ink); }
+    .modal-close { position: absolute; top: 1.2rem; right: 1.2rem; background: none; border: none; font-size: 1.3rem; color: var(--muted); cursor: pointer; }
     .modal-close:hover { color: var(--ink); }
 
     /* ── FORM ── */
-    .form-group {
-      margin-bottom: 1.1rem;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.4rem;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.92rem;
-      color: var(--ink);
-      background: var(--paper);
-      border: 1.5px solid var(--rule);
-      border-radius: 8px;
-      padding: 0.6rem 0.85rem;
-      outline: none;
-      transition: border-color 0.15s;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--accent);
-    }
-
-    .form-group textarea {
-      resize: vertical;
-      min-height: 80px;
-    }
-
-    .form-hint {
-      font-size: 0.76rem;
-      color: var(--muted);
-      margin-top: 0.3rem;
-    }
-
-    .form-actions {
-      display: flex;
-      gap: 0.7rem;
-      margin-top: 1.5rem;
-    }
-
-    .btn-primary {
-      flex: 1;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 24px;
-      padding: 0.7rem 1.2rem;
-      font-size: 0.88rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: opacity 0.15s;
-    }
-
+    .form-group { margin-bottom: 1.1rem; }
+    .form-group label { display: block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; font-family: 'Inter', sans-serif; font-size: 0.92rem; color: var(--ink); background: var(--paper); border: 1.5px solid var(--rule); border-radius: 8px; padding: 0.6rem 0.85rem; outline: none; transition: border-color 0.15s; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .form-hint { font-size: 0.76rem; color: var(--muted); margin-top: 0.3rem; }
+    .form-actions { display: flex; gap: 0.7rem; margin-top: 1.5rem; }
+    .btn-primary { flex: 1; background: var(--accent); color: #fff; border: none; border-radius: 24px; padding: 0.7rem 1.2rem; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: opacity 0.15s; }
     .btn-primary:hover { opacity: 0.88; }
     .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
-
-    .btn-secondary {
-      background: none;
-      border: 1.5px solid var(--rule);
-      border-radius: 24px;
-      padding: 0.7rem 1.2rem;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--muted);
-      cursor: pointer;
-      transition: border-color 0.15s, color 0.15s;
-    }
-
+    .btn-secondary { background: none; border: 1.5px solid var(--rule); border-radius: 24px; padding: 0.7rem 1.2rem; font-size: 0.88rem; font-weight: 600; color: var(--muted); cursor: pointer; transition: border-color 0.15s, color 0.15s; }
     .btn-secondary:hover { border-color: var(--ink); color: var(--ink); }
 
     /* ── TOAST ── */
-    .toast {
-      position: fixed;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%) translateY(4rem);
-      background: var(--ink);
-      color: #fff;
-      font-size: 0.85rem;
-      font-weight: 500;
-      padding: 0.7rem 1.4rem;
-      border-radius: 24px;
-      z-index: 200;
-      opacity: 0;
-      transition: opacity 0.25s, transform 0.25s;
-      white-space: nowrap;
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
+    .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(4rem); background: var(--ink); color: #fff; font-size: 0.85rem; font-weight: 500; padding: 0.7rem 1.4rem; border-radius: 24px; z-index: 700; opacity: 0; transition: opacity 0.25s, transform 0.25s; white-space: nowrap; }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
     .toast.success { background: var(--green); }
     .toast.error   { background: #b03a2e; }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 600px) {
-      header, main { padding-left: 1.1rem; padding-right: 1.1rem; }
+    @media (max-width: 680px) {
+      .page-body { grid-template-columns: 1fr; padding-left: 1.1rem; padding-right: 1.1rem; }
+      .filter-sidebar { position: static; background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 1.2rem; }
+      header { padding-left: 1.1rem; padding-right: 1.1rem; }
       .modal { padding: 1.4rem; }
     }
   </style>
@@ -364,21 +233,51 @@
   </button>
 </header>
 
-<main>
-  <div class="library-grid" id="grid"></div>
-</main>
+<div class="page-body">
+
+  <!-- FILTER SIDEBAR -->
+  <aside class="filter-sidebar">
+
+    <div class="filter-section">
+      <span class="filter-label">Content type</span>
+      <div id="type-filters"></div>
+    </div>
+
+    <hr class="filter-divider" />
+
+    <div class="filter-section">
+      <span class="filter-label">Sort by</span>
+      <select class="sort-select" id="sort-select" onchange="applyFilters()">
+        <option value="date-desc">Newest first</option>
+        <option value="date-asc">Oldest first</option>
+        <option value="title-asc">Title A → Z</option>
+        <option value="title-desc">Title Z → A</option>
+      </select>
+    </div>
+
+    <hr class="filter-divider" />
+
+    <button class="filter-reset" onclick="resetFilters()">Reset filters</button>
+
+  </aside>
+
+  <!-- CONTENT -->
+  <div>
+    <p class="result-count" id="result-count"></p>
+    <div class="library-grid" id="grid"></div>
+  </div>
+
+</div>
 
 <!-- ADD BOOK MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">✕</button>
     <h2 class="modal-title">Add a book or podcast</h2>
-
     <div class="form-group">
       <label>Title *</label>
       <input type="text" id="f-title" placeholder="e.g. The Making of a Manager" />
     </div>
-
     <div class="form-group">
       <label>Type *</label>
       <select id="f-type">
@@ -389,30 +288,23 @@
         <option value="Other">Other</option>
       </select>
     </div>
-
     <div class="form-group">
       <label>Link (optional)</label>
       <input type="url" id="f-link" placeholder="https://..." />
-      <p class="form-hint">A URL to the book, podcast, or a summary.</p>
     </div>
-
     <div class="form-group">
       <label>Link label (optional)</label>
       <input type="text" id="f-link-label" placeholder="e.g. View on Goodreads ↗" />
     </div>
-
     <div class="form-group">
       <label>Key ideas (optional)</label>
-      <textarea id="f-ideas" placeholder="One idea per line. Format: Heading | Description&#10;e.g. On Trust | Trust is built through consistency."></textarea>
-      <p class="form-hint">Each line becomes a card. Use <strong>Heading | Text</strong> format, or just text.</p>
+      <textarea id="f-ideas" placeholder="One idea per line. Format: Heading | Description"></textarea>
+      <p class="form-hint">Use <strong>Heading | Text</strong> format per line.</p>
     </div>
-
     <div class="form-group">
       <label>Quotes (optional)</label>
-      <textarea id="f-quotes" placeholder="One quote per line. Format: Quote text | Attribution&#10;e.g. Clarity is kindness. | Kim Scott"></textarea>
-      <p class="form-hint">Use <strong>Quote | Attribution</strong> format per line.</p>
+      <textarea id="f-quotes" placeholder="One quote per line. Format: Quote | Attribution"></textarea>
     </div>
-
     <div class="form-actions">
       <button class="btn-secondary" onclick="closeModal()">Cancel</button>
       <button class="btn-primary" id="save-btn" onclick="saveSource()">Save to library</button>
@@ -445,29 +337,81 @@
 
 <script src="data.js"></script>
 <script>
-  // ── CONFIG ──
-  const GITHUB_USER = 'Gertjun';
-  const GITHUB_REPO = 'Book-and-Podcasts-Library';
-  const GITHUB_FILE = 'data.js';
+  const GITHUB_USER  = 'Gertjun';
+  const GITHUB_REPO  = 'Book-and-Podcasts-Library';
+  const GITHUB_FILE  = 'data.js';
   const GITHUB_TOKEN = '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';
-  const API_BASE    = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
+  const API_BASE     = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
 
-  // ── SLUGIFY ──
-  function slugify(str) {
-    return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  function slugify(str) { return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+
+  function formatDate(str) {
+    if (!str) return '';
+    const d = new Date(str + 'T00:00:00');
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+
+  function today() { return new Date().toISOString().split('T')[0]; }
+
+  // ── FILTERS ──
+  let activeTypes = new Set();
+
+  function buildTypeFilters() {
+    const types = [...new Set(sources.map(s => s.type))].sort();
+    activeTypes = new Set(types); // all selected by default
+    const container = document.getElementById('type-filters');
+    container.innerHTML = types.map(t => `
+      <label class="filter-option">
+        <input type="checkbox" value="${t}" checked onchange="applyFilters()" />
+        ${t}
+      </label>`).join('');
+  }
+
+  function getActiveTypes() {
+    return [...document.querySelectorAll('#type-filters input:checked')].map(el => el.value);
+  }
+
+  function applyFilters() {
+    const types = new Set(getActiveTypes());
+    const sort  = document.getElementById('sort-select').value;
+
+    let filtered = sources.filter(s => types.has(s.type));
+
+    filtered.sort((a, b) => {
+      if (sort === 'date-desc') return (b.dateAdded || '').localeCompare(a.dateAdded || '');
+      if (sort === 'date-asc')  return (a.dateAdded || '').localeCompare(b.dateAdded || '');
+      if (sort === 'title-asc') return a.title.localeCompare(b.title);
+      if (sort === 'title-desc') return b.title.localeCompare(a.title);
+      return 0;
+    });
+
+    renderGrid(filtered);
+    attachCardListeners();
+
+    const total = sources.length;
+    const shown = filtered.length;
+    document.getElementById('result-count').textContent =
+      shown === total ? `${total} entr${total !== 1 ? 'ies' : 'y'}` : `${shown} of ${total} entries`;
+  }
+
+  function resetFilters() {
+    document.querySelectorAll('#type-filters input').forEach(el => el.checked = true);
+    document.getElementById('sort-select').value = 'date-desc';
+    applyFilters();
   }
 
   // ── RENDER GRID ──
-  function renderGrid(sourceList) {
+  function renderGrid(list) {
     const grid = document.getElementById('grid');
-    if (!sourceList || sourceList.length === 0) {
-      grid.innerHTML = '<p class="empty">No entries yet — tap "Add book" to get started.</p>';
+    if (!list || list.length === 0) {
+      grid.innerHTML = '<p class="empty">No entries match the current filters.</p>';
       return;
     }
-    grid.innerHTML = sourceList.map(source => {
-      const slug = slugify(source.title);
-      const epCount = (source.episodes || []).length;
+    grid.innerHTML = list.map(source => {
+      const slug     = slugify(source.title);
+      const epCount  = (source.episodes || []).length;
       const ideaCount = (source.keyIdeas || []).length + (source.quotes || []).length;
+      const dateStr  = source.dateAdded ? formatDate(source.dateAdded) : '';
       return `
         <a class="source-card" href="source.html?s=${slug}">
           <svg class="card-arrow" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -475,58 +419,61 @@
           </svg>
           <p class="card-type">${source.type}</p>
           <h2 class="card-title">${source.title}</h2>
+          ${dateStr ? `<p class="card-date">Added ${dateStr}</p>` : ''}
           <div class="card-meta">
-            ${epCount > 0 ? `<span>📖 ${epCount} episode${epCount !== 1 ? 's' : ''}</span>` : ''}
+            ${epCount  > 0 ? `<span>📖 ${epCount} episode${epCount !== 1 ? 's' : ''}</span>` : ''}
             ${ideaCount > 0 ? `<span>💡 ${ideaCount} note${ideaCount !== 1 ? 's' : ''}</span>` : ''}
           </div>
         </a>`;
     }).join('');
   }
 
-  renderGrid(sources);
+  // ── INIT ──
+  buildTypeFilters();
+  applyFilters();
 
   // ── MODAL ──
-  function openModal() {
-    document.getElementById('modal-overlay').classList.add('open');
-    document.getElementById('f-title').focus();
-  }
-
-  function closeModal() {
-    document.getElementById('modal-overlay').classList.remove('open');
-    clearForm();
-  }
-
-  function handleOverlayClick(e) {
-    if (e.target === document.getElementById('modal-overlay')) closeModal();
-  }
-
+  function openModal() { document.getElementById('modal-overlay').classList.add('open'); document.getElementById('f-title').focus(); }
+  function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); clearForm(); }
+  function handleOverlayClick(e) { if (e.target === document.getElementById('modal-overlay')) closeModal(); }
   function clearForm() {
-    ['f-title','f-link','f-link-label','f-ideas','f-quotes'].forEach(id => {
-      document.getElementById(id).value = '';
-    });
+    ['f-title','f-link','f-link-label','f-ideas','f-quotes'].forEach(id => document.getElementById(id).value = '');
     document.getElementById('f-type').selectedIndex = 0;
   }
 
   // ── TOAST ──
   function showToast(msg, type = '') {
     const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.className = 'toast show ' + type;
+    t.textContent = msg; t.className = 'toast show ' + type;
     setTimeout(() => { t.className = 'toast'; }, 3500);
   }
 
-  // ── PARSE FORM ──
-  function parseLines(raw, separator = '|') {
-    return raw.split('\n')
-      .map(l => l.trim())
-      .filter(Boolean)
-      .map(l => {
-        const parts = l.split(separator).map(p => p.trim());
-        return parts;
-      });
+  function parseLines(raw) {
+    return raw.split('\n').map(l => l.trim()).filter(Boolean).map(l => l.split('|').map(p => p.trim()));
   }
 
-  // ── SAVE ──
+  // ── GITHUB HELPERS ──
+  async function fetchCurrentFile() {
+    const res = await fetch(API_BASE, { headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github+json' } });
+    if (!res.ok) throw new Error(`GitHub read failed: ${res.status}`);
+    return res.json();
+  }
+
+  async function pushFile(content, sha, message) {
+    const encoded = btoa(unescape(encodeURIComponent(content)));
+    const res = await fetch(API_BASE, {
+      method: 'PUT',
+      headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message, content: encoded, sha }),
+    });
+    if (!res.ok) { const err = await res.json(); throw new Error(err.message || `GitHub write failed: ${res.status}`); }
+  }
+
+  function buildDataJs(arr) {
+    return `// ============================================================\n//  DATA FILE\n// ============================================================\n\nconst sources = ${JSON.stringify(arr, null, 2)};\n`;
+  }
+
+  // ── SAVE NEW SOURCE ──
   async function saveSource() {
     const title = document.getElementById('f-title').value.trim();
     if (!title) { showToast('Please enter a title.', 'error'); return; }
@@ -537,119 +484,110 @@
     const ideasRaw  = document.getElementById('f-ideas').value.trim();
     const quotesRaw = document.getElementById('f-quotes').value.trim();
 
-    // Build key ideas
-    const keyIdeas = ideasRaw ? parseLines(ideasRaw).map(parts => ({
-      heading: parts[0],
-      text: parts[1] || '',
-    })) : [];
-
-    // Build quotes
-    const quotes = quotesRaw ? parseLines(quotesRaw).map(parts => ({
-      text: parts[0],
-      attribution: parts[1] || '',
-    })) : [];
+    const keyIdeas = ideasRaw ? parseLines(ideasRaw).map(p => ({ heading: p[0], text: p[1] || '' })) : [];
+    const quotes   = quotesRaw ? parseLines(quotesRaw).map(p => ({ text: p[0], attribution: p[1] || '' })) : [];
 
     const newSource = {
-      title,
-      type,
+      title, type,
+      dateAdded: today(),
       ...(link ? { link } : {}),
       ...(linkLabel ? { linkLabel } : {}),
-      keyIdeas,
-      quotes,
-      episodes: [],
+      keyIdeas, quotes, episodes: [],
     };
 
     const btn = document.getElementById('save-btn');
-    btn.disabled = true;
-    btn.textContent = 'Saving…';
+    btn.disabled = true; btn.textContent = 'Saving…';
 
     try {
-      // 1. Fetch current file from GitHub to get SHA
-      const metaRes = await fetch(API_BASE, {
-        headers: {
-          'Authorization': `Bearer ${GITHUB_TOKEN}`,
-          'Accept': 'application/vnd.github+json',
-        }
-      });
-
-      if (!metaRes.ok) throw new Error(`GitHub read failed: ${metaRes.status}`);
-      const meta = await metaRes.json();
-      const sha = meta.sha;
-
-      // 2. Decode current content and append new source
-      const currentContent = atob(meta.content.replace(/\n/g, ''));
-      const sourcesMatch = currentContent.match(/const sources = (\[[\s\S]*\]);/);
-      if (!sourcesMatch) throw new Error('Could not parse data.js sources array.');
-
-      const existingSources = JSON.parse(sourcesMatch[1]);
-      existingSources.push(newSource);
-
-      // 3. Rebuild data.js with updated sources array
-      const newDataJs = buildDataJs(existingSources);
-      const encoded = btoa(unescape(encodeURIComponent(newDataJs)));
-
-      // 4. Push back to GitHub
-      const pushRes = await fetch(API_BASE, {
-        method: 'PUT',
-        headers: {
-          'Authorization': `Bearer ${GITHUB_TOKEN}`,
-          'Accept': 'application/vnd.github+json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          message: `Add: ${title}`,
-          content: encoded,
-          sha,
-        }),
-      });
-
-      if (!pushRes.ok) {
-        const err = await pushRes.json();
-        throw new Error(err.message || `GitHub write failed: ${pushRes.status}`);
-      }
-
-      // 5. Update UI
+      const meta = await fetchCurrentFile();
+      const current = atob(meta.content.replace(/\n/g, ''));
+      const match = current.match(/const sources = (\[[\s\S]*\]);/);
+      if (!match) throw new Error('Could not parse data.js');
+      const allSources = JSON.parse(match[1]);
+      allSources.push(newSource);
+      await pushFile(buildDataJs(allSources), meta.sha, `Add: ${title}`);
       sources.push(newSource);
-      renderGrid(sources);
-      attachCardListeners();
+      buildTypeFilters();
+      applyFilters();
       closeModal();
       showToast('✓ Saved to library!', 'success');
-
     } catch (err) {
-      console.error(err);
-      showToast('Error: ' + err.message, 'error');
+      console.error(err); showToast('Error: ' + err.message, 'error');
     } finally {
-      btn.disabled = false;
-      btn.textContent = 'Save to library';
+      btn.disabled = false; btn.textContent = 'Save to library';
     }
   }
 
-  // ── BUILD data.js ──
-  function buildDataJs(sourcesArray) {
-    const json = JSON.stringify(sourcesArray, null, 2);
-    return `// ============================================================
-//  DATA FILE — add books, podcasts, notes and episodes here
-//
-//  STRUCTURE:
-//  Each entry in \`sources\` is a book or podcast.
-//  Each source has:
-//    - title       : displayed as the page/section heading
-//    - type        : "book" | "podcast" (shown as eyebrow label)
-//    - link        : optional URL shown below the title
-//    - linkLabel   : label for the link (default: "View source ↗")
-//    - keyIdeas    : array of { heading, text } cards
-//    - quotes      : array of { text, attribution } blockquotes
-//    - episodes    : array of episode objects (see below)
-//
-//  EPISODE STRUCTURE:
-//    - number  : episode number (shown in the badge)
-//    - title   : episode title
-//    - tips    : array of tip strings
-//    - qa      : array of { q, a } objects  ← optional
-// ============================================================
+  // ── CONTEXT MENU ──
+  let ctxTargetSlug = null;
+  let longPressTimer = null;
+  const ctxMenu = document.getElementById('ctx-menu');
 
-const sources = ${json};
-`;
+  function attachCardListeners() {
+    document.querySelectorAll('a.source-card').forEach(card => {
+      const slug = new URL(card.href).searchParams.get('s');
+      card.addEventListener('contextmenu', e => { e.preventDefault(); showCtxMenu(e.clientX, e.clientY, slug); });
+      card.addEventListener('touchstart', e => { longPressTimer = setTimeout(() => { const t = e.touches[0]; showCtxMenu(t.clientX, t.clientY, slug); }, 600); }, { passive: true });
+      card.addEventListener('touchend', () => clearTimeout(longPressTimer));
+      card.addEventListener('touchmove', () => clearTimeout(longPressTimer));
+    });
+  }
+
+  function showCtxMenu(x, y, slug) {
+    ctxTargetSlug = slug;
+    ctxMenu.style.left = Math.min(x, window.innerWidth - 180) + 'px';
+    ctxMenu.style.top  = Math.min(y, window.innerHeight - 80) + 'px';
+    ctxMenu.classList.add('open');
+  }
+
+  function hideCtxMenu() { ctxMenu.classList.remove('open'); ctxTargetSlug = null; }
+
+  document.addEventListener('click', e => { if (!ctxMenu.contains(e.target)) hideCtxMenu(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { hideCtxMenu(); closeConfirm(); } });
+
+  document.getElementById('ctx-delete-btn').addEventListener('click', () => {
+    const s = sources.find(x => slugify(x.title) === ctxTargetSlug);
+    const label = s ? s.title : ctxTargetSlug;
+    hideCtxMenu();
+    openConfirm(`Delete "${label}"? All notes and episodes will be lost.`, () => deleteSource(ctxTargetSlug));
+  });
+
+  // ── CONFIRM ──
+  let confirmCallback = null;
+  function openConfirm(msg, cb) {
+    document.getElementById('confirm-msg').textContent = msg;
+    confirmCallback = cb;
+    document.getElementById('confirm-dialog').classList.add('open');
+  }
+  function closeConfirm() { document.getElementById('confirm-dialog').classList.remove('open'); confirmCallback = null; }
+
+  document.getElementById('confirm-delete-btn').addEventListener('click', async () => {
+    if (!confirmCallback) return;
+    const btn = document.getElementById('confirm-delete-btn');
+    btn.disabled = true; btn.textContent = 'Deleting…';
+    await confirmCallback();
+    btn.disabled = false; btn.textContent = 'Delete';
+    closeConfirm();
+  });
+
+  // ── DELETE SOURCE ──
+  async function deleteSource(slug) {
+    try {
+      const meta = await fetchCurrentFile();
+      const current = atob(meta.content.replace(/\n/g, ''));
+      const match = current.match(/const sources = (\[[\s\S]*\]);/);
+      if (!match) throw new Error('Could not parse data.js');
+      const allSources = JSON.parse(match[1]);
+      const idx = allSources.findIndex(s => slugify(s.title) === slug);
+      if (idx === -1) throw new Error('Source not found');
+      const removed = allSources.splice(idx, 1)[0];
+      await pushFile(buildDataJs(allSources), meta.sha, `Delete: ${removed.title}`);
+      const i = sources.findIndex(s => slugify(s.title) === slug);
+      if (i !== -1) sources.splice(i, 1);
+      buildTypeFilters();
+      applyFilters();
+      showToast('✓ Deleted', 'success');
+    } catch (err) { showToast('Error: ' + err.message, 'error'); }
   }
 </script>
 </body>

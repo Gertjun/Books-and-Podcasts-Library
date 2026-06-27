@@ -23,6 +23,7 @@ const sources = [
   {
     title: "Radical Candor",
     type: "Book & Podcast",
+    dateAdded: "2026-06-26",
     link: "https://medium.com/@amaya30/top-take-aways-from-radical-candor-6732f8420bf0",
     linkLabel: "Medium summary ↗",
 
@@ -340,6 +341,7 @@ const sources = [
   {
     title: "The Phoenix Project",
     type: "Book",
+    dateAdded: "2026-04-21",
     link: "https://itrevolution.com/product/the-phoenix-project/",
     linkLabel: "View on IT Revolution ↗",
 
