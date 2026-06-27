@@ -16,49 +16,19 @@
       --card:      #ffffff;
       --tip-bg:    #f0ede8;
       --green:     #2a7a4f;
-      --green-lt:  #e6f4ed;
-      --danger:    #b03a2e;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      background: var(--paper);
-      color: var(--ink);
-      font-family: 'Inter', sans-serif;
-      font-size: 16px;
-      line-height: 1.7;
-      min-height: 100vh;
-    }
+    body { background: var(--paper); color: var(--ink); font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.7; min-height: 100vh; }
 
     /* ── BACK BAR ── */
-    .back-bar {
-      max-width: 860px; margin: 0 auto;
-      padding: 1.5rem 2rem 0;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-
-    .back-link {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      font-size: 0.82rem; font-weight: 600; color: var(--muted);
-      text-decoration: none; transition: color 0.15s;
-    }
+    .back-bar { max-width: 860px; margin: 0 auto; padding: 1.5rem 2rem 0; display: flex; align-items: center; justify-content: space-between; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; font-weight: 600; color: var(--muted); text-decoration: none; transition: color 0.15s; }
     .back-link:hover { color: var(--accent); }
-
     .action-buttons { display: flex; gap: 0.5rem; }
-
-    .action-btn {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      background: var(--accent); color: #fff;
-      font-size: 0.8rem; font-weight: 600;
-      padding: 0.45rem 1rem; border-radius: 20px;
-      border: none; cursor: pointer; transition: opacity 0.15s;
-    }
+    .action-btn { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--accent); color: #fff; font-size: 0.8rem; font-weight: 600; padding: 0.45rem 1rem; border-radius: 20px; border: none; cursor: pointer; transition: opacity 0.15s; }
     .action-btn:hover { opacity: 0.88; }
-    .action-btn--secondary {
-      background: none; color: var(--accent);
-      border: 1.5px solid var(--accent);
-    }
+    .action-btn--secondary { background: none; color: var(--accent); border: 1.5px solid var(--accent); }
 
     /* ── HEADER ── */
     header { border-bottom: 2px solid var(--ink); padding: 2rem; max-width: 860px; margin: 0 auto; }
@@ -68,44 +38,45 @@
 
     /* ── MAIN ── */
     main { max-width: 860px; margin: 0 auto; padding: 0 2rem 6rem; }
-
-    /* ── SECTION LABELS ── */
     .section-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 2rem; margin-top: 2.5rem; margin-bottom: 1.2rem; }
 
     /* ── NOTES GRID ── */
     .notes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 1.2rem; }
 
-    .note-card {
-      background: var(--card); border: 1px solid var(--rule);
-      border-radius: 8px; padding: 1.1rem 1.2rem;
-      font-size: 0.9rem; color: var(--ink);
-      position: relative; cursor: context-menu;
-      transition: border-color 0.15s;
-    }
-    .note-card:hover { border-color: #c8c0b8; }
+    .note-card-wrap { position: relative; }
+    .note-card { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 1.1rem 2.4rem 1.1rem 1.2rem; font-size: 0.9rem; color: var(--ink); }
     .note-card--has-image { grid-column: 1 / -1; }
     .note-card strong { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.45rem; }
     .note-card-img { display: block; width: 100%; max-width: 560px; height: auto; border-radius: 6px; margin-top: 0.9rem; border: 1px solid var(--rule); }
 
     /* ── QUOTES ── */
-    .quote-block {
-      border-left: 3px solid var(--accent); padding: 1rem 1.2rem 1rem 1.4rem;
-      background: var(--accent-lt); border-radius: 0 6px 6px 0;
-      margin-bottom: 1.2rem; position: relative; cursor: context-menu;
-    }
+    .quote-wrap { position: relative; margin-bottom: 1.2rem; }
+    .quote-block { border-left: 3px solid var(--accent); padding: 1rem 2.4rem 1rem 1.4rem; background: var(--accent-lt); border-radius: 0 6px 6px 0; }
     .quote-block p { font-family: 'DM Serif Display', serif; font-size: 1.05rem; font-style: italic; line-height: 1.6; color: var(--ink); }
     .quote-block cite { display: block; margin-top: 0.5rem; font-size: 0.8rem; font-style: normal; font-weight: 500; color: var(--muted); }
 
+    /* ── ⋯ MENU BUTTON ── */
+    .item-menu-btn {
+      position: absolute; top: 0.6rem; right: 0.6rem;
+      width: 1.6rem; height: 1.6rem; border-radius: 50%;
+      border: none; background: transparent; color: var(--muted);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; opacity: 0; transition: opacity 0.15s, background 0.15s;
+      z-index: 2;
+    }
+    .note-card-wrap:hover .item-menu-btn,
+    .quote-wrap:hover .item-menu-btn,
+    .episode-wrap:hover .item-menu-btn { opacity: 1; }
+    .item-menu-btn:hover { background: rgba(0,0,0,0.07); color: var(--ink); }
+    @media (hover: none) { .item-menu-btn { opacity: 1; } }
+
     /* ── EPISODES ── */
     .episodes-list { display: flex; flex-direction: column; gap: 0.6rem; }
+    .episode-wrap { position: relative; }
 
-    details.episode {
-      background: var(--card); border: 1px solid var(--rule);
-      border-radius: 10px; overflow: hidden; transition: box-shadow 0.2s;
-      position: relative;
-    }
+    details.episode { background: var(--card); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; transition: box-shadow 0.2s; }
     details.episode[open] { box-shadow: 0 4px 20px rgba(0,0,0,0.07); border-color: var(--accent); }
-    details.episode summary { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.25rem; cursor: pointer; list-style: none; user-select: none; }
+    details.episode summary { display: flex; align-items: center; gap: 1rem; padding: 1rem 3rem 1rem 1.25rem; cursor: pointer; list-style: none; user-select: none; }
     details.episode summary::-webkit-details-marker { display: none; }
 
     .ep-num { flex-shrink: 0; width: 2rem; height: 2rem; border-radius: 50%; background: var(--tip-bg); color: var(--accent); font-size: 0.72rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
@@ -128,44 +99,33 @@
     .qa-a { font-size: 0.87rem; color: #3d3730; line-height: 1.65; }
 
     /* ── CONTROLS ── */
-    .controls { display: flex; gap: 0.6rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .controls { display: flex; gap: 0.6rem; margin-bottom: 1rem; }
     .ctrl-btn { font-size: 0.78rem; font-weight: 600; padding: 0.35rem 0.85rem; border-radius: 20px; border: 1.5px solid var(--rule); background: var(--card); color: var(--muted); cursor: pointer; transition: all 0.15s; }
     .ctrl-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* ── NOT FOUND ── */
     .not-found { padding: 4rem 0; color: var(--muted); }
     .not-found h2 { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--ink); margin-bottom: 0.5rem; }
     .not-found a { color: var(--accent); }
 
-    /* ── CONTEXT MENU ── */
-    .ctx-menu {
-      position: fixed;
-      background: var(--card);
-      border: 1px solid var(--rule);
-      border-radius: 10px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.14);
-      padding: 0.4rem;
-      z-index: 500;
-      min-width: 160px;
-      display: none;
-    }
-    .ctx-menu.open { display: block; }
+    /* ── DROPDOWN ── */
+    .dropdown { position: fixed; background: var(--card); border: 1px solid var(--rule); border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.14); padding: 0.4rem; z-index: 500; min-width: 150px; display: none; }
+    .dropdown.open { display: block; }
+    .dropdown-item { display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.8rem; border-radius: 6px; font-size: 0.86rem; font-weight: 500; cursor: pointer; color: var(--ink); transition: background 0.12s; border: none; background: none; width: 100%; text-align: left; }
+    .dropdown-item:hover { background: var(--tip-bg); }
+    .dropdown-item--danger { color: #b03a2e; }
+    .dropdown-item--danger:hover { background: #fdf0ef; }
+    .dropdown-divider { border: none; border-top: 1px solid var(--rule); margin: 0.3rem 0; }
 
-    .ctx-menu-item {
-      display: flex; align-items: center; gap: 0.6rem;
-      padding: 0.55rem 0.8rem;
-      border-radius: 6px;
-      font-size: 0.88rem; font-weight: 500;
-      cursor: pointer;
-      color: var(--ink);
-      transition: background 0.12s;
-      border: none; background: none; width: 100%; text-align: left;
-    }
-    .ctx-menu-item:hover { background: var(--tip-bg); }
-    .ctx-menu-item--danger { color: var(--danger); }
-    .ctx-menu-item--danger:hover { background: #fdf0ef; }
-
-    .ctx-divider { border: none; border-top: 1px solid var(--rule); margin: 0.3rem 0; }
+    /* ── CONFIRM ── */
+    .confirm-dialog { position: fixed; inset: 0; background: rgba(26,26,26,0.55); z-index: 600; display: none; align-items: center; justify-content: center; padding: 1rem; }
+    .confirm-dialog.open { display: flex; }
+    .confirm-box { background: var(--card); border-radius: 14px; padding: 1.8rem; max-width: 360px; width: 100%; box-shadow: 0 16px 48px rgba(0,0,0,0.18); text-align: center; }
+    .confirm-box h3 { font-family: 'DM Serif Display', serif; font-size: 1.3rem; margin-bottom: 0.5rem; }
+    .confirm-box p { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.4rem; }
+    .confirm-actions { display: flex; gap: 0.7rem; }
+    .btn-danger { flex: 1; background: #b03a2e; color: #fff; border: none; border-radius: 24px; padding: 0.7rem; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: opacity 0.15s; }
+    .btn-danger:hover { opacity: 0.88; }
+    .btn-danger:disabled { opacity: 0.5; cursor: not-allowed; }
 
     /* ── MODAL ── */
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,26,0.55); z-index: 100; align-items: center; justify-content: center; padding: 1rem; }
@@ -174,24 +134,6 @@
     .modal-title { font-family: 'DM Serif Display', serif; font-size: 1.5rem; margin-bottom: 1.4rem; color: var(--ink); }
     .modal-close { position: absolute; top: 1.2rem; right: 1.2rem; background: none; border: none; font-size: 1.3rem; color: var(--muted); cursor: pointer; }
     .modal-close:hover { color: var(--ink); }
-
-    /* ── CONFIRM DIALOG ── */
-    .confirm-dialog {
-      position: fixed; inset: 0; background: rgba(26,26,26,0.55);
-      z-index: 600; display: none; align-items: center; justify-content: center; padding: 1rem;
-    }
-    .confirm-dialog.open { display: flex; }
-    .confirm-box {
-      background: var(--card); border-radius: 14px; padding: 1.8rem;
-      max-width: 360px; width: 100%; box-shadow: 0 16px 48px rgba(0,0,0,0.18);
-      text-align: center;
-    }
-    .confirm-box h3 { font-family: 'DM Serif Display', serif; font-size: 1.3rem; margin-bottom: 0.5rem; }
-    .confirm-box p { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.4rem; }
-    .confirm-actions { display: flex; gap: 0.7rem; }
-    .btn-danger { flex: 1; background: var(--danger); color: #fff; border: none; border-radius: 24px; padding: 0.7rem; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: opacity 0.15s; }
-    .btn-danger:hover { opacity: 0.88; }
-    .btn-danger:disabled { opacity: 0.5; cursor: not-allowed; }
 
     /* ── FORM ── */
     .form-group { margin-bottom: 1rem; }
@@ -204,14 +146,14 @@
     .btn-primary { flex: 1; background: var(--accent); color: #fff; border: none; border-radius: 24px; padding: 0.7rem 1.2rem; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: opacity 0.15s; }
     .btn-primary:hover { opacity: 0.88; }
     .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
-    .btn-secondary { background: none; border: 1.5px solid var(--rule); border-radius: 24px; padding: 0.7rem 1.2rem; font-size: 0.88rem; font-weight: 600; color: var(--muted); cursor: pointer; transition: border-color 0.15s, color 0.15s; }
+    .btn-secondary { background: none; border: 1.5px solid var(--rule); border-radius: 24px; padding: 0.7rem 1.2rem; font-size: 0.88rem; font-weight: 600; color: var(--muted); cursor: pointer; }
     .btn-secondary:hover { border-color: var(--ink); color: var(--ink); }
 
     /* ── TOAST ── */
-    .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(4rem); background: var(--ink); color: #fff; font-size: 0.85rem; font-weight: 500; padding: 0.7rem 1.4rem; border-radius: 24px; z-index: 200; opacity: 0; transition: opacity 0.25s, transform 0.25s; white-space: nowrap; }
+    .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(4rem); background: var(--ink); color: #fff; font-size: 0.85rem; font-weight: 500; padding: 0.7rem 1.4rem; border-radius: 24px; z-index: 700; opacity: 0; transition: opacity 0.25s, transform 0.25s; white-space: nowrap; }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
     .toast.success { background: var(--green); }
-    .toast.error   { background: var(--danger); }
+    .toast.error   { background: #b03a2e; }
 
     @media (max-width: 600px) {
       .back-bar, header, main { padding-left: 1.1rem; padding-right: 1.1rem; }
@@ -232,18 +174,21 @@
 <header id="page-header"></header>
 <main id="app"></main>
 
-<!-- CONTEXT MENU -->
-<div class="ctx-menu" id="ctx-menu">
-  <button class="ctx-menu-item ctx-menu-item--danger" id="ctx-delete-btn">
-    <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 17 6"/><path d="M8 6V4h4v2"/><path d="M19 6l-1 12a2 2 0 01-2 2H4a2 2 0 01-2-2L1 6"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="13.5" y2="17"/><line x1="6" y1="11" x2="6.5" y2="17"/></svg>
-    Delete
+<!-- DROPDOWN -->
+<div class="dropdown" id="dropdown">
+  <button class="dropdown-item" id="dd-edit-btn">
+    <svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 4l5 5-9 9H2v-5L11 4z"/></svg>Edit
+  </button>
+  <div class="dropdown-divider"></div>
+  <button class="dropdown-item dropdown-item--danger" id="dd-delete-btn">
+    <svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 17 6"/><path d="M8 6V4h4v2"/><path d="M19 6l-1 12a2 2 0 01-2 2H4a2 2 0 01-2-2L1 6"/></svg>Delete
   </button>
 </div>
 
 <!-- CONFIRM DIALOG -->
 <div class="confirm-dialog" id="confirm-dialog">
   <div class="confirm-box">
-    <h3>Delete this item?</h3>
+    <h3>Are you sure?</h3>
     <p id="confirm-msg">This cannot be undone.</p>
     <div class="confirm-actions">
       <button class="btn-secondary" onclick="closeConfirm()">Cancel</button>
@@ -252,14 +197,54 @@
   </div>
 </div>
 
-<!-- ADD EPISODE MODAL -->
+<!-- ADD / EDIT NOTE MODAL -->
+<div class="modal-overlay" id="note-modal-overlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeNoteModal()">✕</button>
+    <h2 class="modal-title" id="note-modal-title">Add a note</h2>
+    <div class="form-group">
+      <label>Heading *</label>
+      <input type="text" id="note-heading" placeholder="e.g. On Leadership" />
+    </div>
+    <div class="form-group">
+      <label>Note *</label>
+      <textarea id="note-text" style="min-height:120px;" placeholder="Write your note here…"></textarea>
+    </div>
+    <div class="form-actions">
+      <button class="btn-secondary" onclick="closeNoteModal()">Cancel</button>
+      <button class="btn-primary" id="note-save-btn" onclick="saveNote()">Save note</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD / EDIT QUOTE MODAL -->
+<div class="modal-overlay" id="quote-modal-overlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeQuoteModal()">✕</button>
+    <h2 class="modal-title" id="quote-modal-title">Add a quote</h2>
+    <div class="form-group">
+      <label>Quote *</label>
+      <textarea id="quote-text" style="min-height:100px;" placeholder="The quote text…"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Attribution *</label>
+      <input type="text" id="quote-attr" placeholder="e.g. Kim Scott" />
+    </div>
+    <div class="form-actions">
+      <button class="btn-secondary" onclick="closeQuoteModal()">Cancel</button>
+      <button class="btn-primary" id="quote-save-btn" onclick="saveQuote()">Save quote</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD / EDIT EPISODE MODAL -->
 <div class="modal-overlay" id="ep-modal-overlay">
   <div class="modal">
     <button class="modal-close" onclick="closeEpModal()">✕</button>
-    <h2 class="modal-title">Add an episode</h2>
+    <h2 class="modal-title" id="ep-modal-title">Add an episode</h2>
     <div class="form-group">
       <label>Episode number *</label>
-      <input type="number" id="ep-number" placeholder="e.g. 18" min="1" />
+      <input type="number" id="ep-number" min="1" placeholder="e.g. 18" />
     </div>
     <div class="form-group">
       <label>Episode title *</label>
@@ -282,26 +267,6 @@
   </div>
 </div>
 
-<!-- ADD NOTE MODAL -->
-<div class="modal-overlay" id="note-modal-overlay">
-  <div class="modal">
-    <button class="modal-close" onclick="closeNoteModal()">✕</button>
-    <h2 class="modal-title">Add a note</h2>
-    <div class="form-group">
-      <label>Heading *</label>
-      <input type="text" id="note-heading" placeholder="e.g. On Leadership" />
-    </div>
-    <div class="form-group">
-      <label>Note *</label>
-      <textarea id="note-text" placeholder="Write your note here…" style="min-height:120px;"></textarea>
-    </div>
-    <div class="form-actions">
-      <button class="btn-secondary" onclick="closeNoteModal()">Cancel</button>
-      <button class="btn-primary" id="note-save-btn" onclick="saveNote()">Save note</button>
-    </div>
-  </div>
-</div>
-
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
@@ -313,315 +278,340 @@
   const GITHUB_TOKEN = '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';
   const API_BASE     = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
 
-  const PLUS_ICON = `<svg width="12" height="12" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg>`;
-  const ARROW_SVG = `<svg class="ep-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 8 10 13 15 8"/></svg>`;
+  const DOTS = `<svg width="13" height="13" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="4" r="1.5"/><circle cx="10" cy="10" r="1.5"/><circle cx="10" cy="16" r="1.5"/></svg>`;
+  const ARROW_SVG = `<svg class="ep-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="5 8 10 13 15 8"/></svg>`;
+  const PLUS = `<svg width="12" height="12" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg>`;
 
-  function slugify(str) { return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
-  function getSlugParam() { return new URLSearchParams(window.location.search).get('s') || ''; }
-  function isBookType(source) { const t = (source.type || '').toLowerCase(); return t === 'book' || t === 'article' || t === 'other'; }
+  function slugify(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+  function getParam()  { return new URLSearchParams(window.location.search).get('s') || ''; }
+  function isBookType(src) { const t = (src.type||'').toLowerCase(); return t==='book'||t==='article'||t==='other'; }
 
-  // ── TOAST ──
-  function showToast(msg, type = '') {
-    const t = document.getElementById('toast');
-    t.textContent = msg; t.className = 'toast show ' + type;
-    setTimeout(() => { t.className = 'toast'; }, 3500);
+  // ── GITHUB ──
+  async function fetchFile() {
+    const r = await fetch(API_BASE, { headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github+json' } });
+    if (!r.ok) throw new Error(`Read failed: ${r.status}`);
+    return r.json();
   }
-
-  // ── GITHUB HELPERS ──
-  async function fetchCurrentFile() {
-    const res = await fetch(API_BASE, { headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github+json' } });
-    if (!res.ok) throw new Error(`GitHub read failed: ${res.status}`);
-    return res.json();
-  }
-
-  async function pushFile(content, sha, message) {
-    const encoded = btoa(unescape(encodeURIComponent(content)));
-    const res = await fetch(API_BASE, {
+  async function pushFile(content, sha, msg) {
+    const r = await fetch(API_BASE, {
       method: 'PUT',
       headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message, content: encoded, sha }),
+      body: JSON.stringify({ message: msg, content: btoa(unescape(encodeURIComponent(content))), sha }),
     });
-    if (!res.ok) { const err = await res.json(); throw new Error(err.message || `GitHub write failed: ${res.status}`); }
+    if (!r.ok) { const e = await r.json(); throw new Error(e.message || 'Write failed'); }
+  }
+  function buildDataJs(arr) { return `// ============================================================\n//  DATA FILE\n// ============================================================\n\nconst sources = ${JSON.stringify(arr, null, 2)};\n`; }
+  async function saveToGitHub(mutateFn, commitMsg) {
+    const meta       = await fetchFile();
+    const current    = atob(meta.content.replace(/\n/g,''));
+    const match      = current.match(/const sources = (\[[\s\S]*\]);/);
+    if (!match) throw new Error('Could not parse data.js');
+    const allSources = JSON.parse(match[1]);
+    const idx        = allSources.findIndex(s => slugify(s.title) === slug);
+    if (idx === -1) throw new Error('Source not found');
+    mutateFn(allSources[idx]);
+    await pushFile(buildDataJs(allSources), meta.sha, commitMsg);
   }
 
-  function buildDataJs(arr) {
-    return `// ============================================================\n//  DATA FILE\n// ============================================================\n\nconst sources = ${JSON.stringify(arr, null, 2)};\n`;
+  // ── TOAST ──
+  function showToast(msg, type='') {
+    const t = document.getElementById('toast');
+    t.textContent = msg; t.className = 'toast show ' + type;
+    setTimeout(() => t.className = 'toast', 3500);
   }
 
   // ── RENDER ──
-  function renderActionButtons(source) {
-    const btn = document.getElementById('action-buttons');
-    if (isBookType(source)) {
-      btn.innerHTML = `<button class="action-btn" onclick="openNoteModal()">${PLUS_ICON} Add note</button>`;
-    } else {
-      btn.innerHTML = `
-        <button class="action-btn" onclick="openEpModal()">${PLUS_ICON} Add episode</button>
-        <button class="action-btn action-btn--secondary" onclick="openNoteModal()">${PLUS_ICON} Add note</button>`;
-    }
+  function menuBtn(type, index) {
+    return `<button class="item-menu-btn" onclick="openDropdown(event,'${type}',${index})" title="Options">${DOTS}</button>`;
   }
 
   function renderKeyIdeas(ideas) {
-    if (!ideas || !ideas.length) return '';
+    if (!ideas||!ideas.length) return '';
     return `<p class="section-label">Key Ideas</p>
       <div class="notes-grid">
-        ${ideas.map((idea, i) => `
-          <div class="note-card${idea.image ? ' note-card--has-image' : ''}" data-type="note" data-index="${i}">
-            <strong>${idea.heading}</strong>${idea.text}
-            ${idea.image ? `<img src="${idea.image}" alt="${idea.imageAlt || idea.heading}" class="note-card-img" />` : ''}
+        ${ideas.map((idea,i) => `
+          <div class="note-card-wrap${idea.image?' note-card--has-image':''}">
+            ${menuBtn('note',i)}
+            <div class="note-card">
+              <strong>${idea.heading}</strong>${idea.text}
+              ${idea.image ? `<img src="${idea.image}" alt="${idea.imageAlt||idea.heading}" class="note-card-img"/>` : ''}
+            </div>
           </div>`).join('')}
       </div>`;
   }
 
   function renderQuotes(quotes) {
-    if (!quotes || !quotes.length) return '';
-    return quotes.map((q, i) => `
-      <div class="quote-block" data-type="quote" data-index="${i}">
-        <p>${q.text}</p><cite>— ${q.attribution}</cite>
+    if (!quotes||!quotes.length) return '';
+    return quotes.map((q,i) => `
+      <div class="quote-wrap">
+        ${menuBtn('quote',i)}
+        <div class="quote-block">
+          <p>${q.text}</p><cite>— ${q.attribution}</cite>
+        </div>
       </div>`).join('');
   }
 
   function renderEpisode(ep, i) {
-    const tipsHTML = (ep.tips && ep.tips.length)
-      ? `<div class="tips">${ep.tips.map((tip, ti) => `<div class="tip"><span class="tip-icon">Tip ${ti + 1}</span>${tip}</div>`).join('')}</div>` : '';
-    const qaHTML = (ep.qa && ep.qa.length)
-      ? `<div class="qa-section">${ep.qa.map(item => `<div class="qa-item"><p class="qa-q">${item.q}</p><p class="qa-a">${item.a}</p></div>`).join('')}</div>` : '';
-    const body = (tipsHTML || qaHTML) ? tipsHTML + qaHTML : `<p style="font-size:0.88rem;color:var(--muted);padding-top:0.9rem;">No notes recorded yet.</p>`;
+    const tipsHTML = (ep.tips&&ep.tips.length) ? `<div class="tips">${ep.tips.map((t,ti)=>`<div class="tip"><span class="tip-icon">Tip ${ti+1}</span>${t}</div>`).join('')}</div>` : '';
+    const qaHTML   = (ep.qa&&ep.qa.length) ? `<div class="qa-section">${ep.qa.map(it=>`<div class="qa-item"><p class="qa-q">${it.q}</p><p class="qa-a">${it.a}</p></div>`).join('')}</div>` : '';
+    const body     = (tipsHTML||qaHTML) ? tipsHTML+qaHTML : `<p style="font-size:0.88rem;color:var(--muted);padding-top:0.9rem;">No notes yet.</p>`;
     return `
-      <details class="episode" data-type="episode" data-index="${i}">
-        <summary>
-          <span class="ep-num">${ep.number}</span>
-          <span class="ep-title">${ep.title}</span>
-          ${ARROW_SVG}
-        </summary>
-        <div class="episode-body">${body}</div>
-      </details>`;
+      <div class="episode-wrap">
+        ${menuBtn('episode',i)}
+        <details class="episode">
+          <summary>
+            <span class="ep-num">${ep.number}</span>
+            <span class="ep-title">${ep.title}</span>
+            ${ARROW_SVG}
+          </summary>
+          <div class="episode-body">${body}</div>
+        </details>
+      </div>`;
   }
 
   let currentSource = null;
-  const slug = getSlugParam();
+  const slug = getParam();
 
-  function renderSource(source) {
-    currentSource = source;
-    document.title = source.title;
+  function renderSource(src) {
+    currentSource = src;
+    document.title = src.title;
     document.getElementById('page-header').innerHTML = `
-      <p class="eyebrow">${source.type}</p>
-      <h1>${source.title}</h1>
-      ${source.link ? `<a class="source-link" href="${source.link}" target="_blank" rel="noopener">${source.linkLabel || 'View source ↗'}</a>` : ''}`;
-    renderActionButtons(source);
+      <p class="eyebrow">${src.type}</p><h1>${src.title}</h1>
+      ${src.link ? `<a class="source-link" href="${src.link}" target="_blank" rel="noopener">${src.linkLabel||'View source ↗'}</a>` : ''}`;
 
-    const showEpisodes = !isBookType(source);
-    const hasEps = source.episodes && source.episodes.length;
-    const episodesHTML = showEpisodes ? `
+    const btns = document.getElementById('action-buttons');
+    if (isBookType(src)) {
+      btns.innerHTML = `<button class="action-btn" onclick="openNoteModal()">${PLUS} Add note</button>`;
+    } else {
+      btns.innerHTML = `
+        <button class="action-btn" onclick="openEpModal()">${PLUS} Add episode</button>
+        <button class="action-btn action-btn--secondary" onclick="openNoteModal()">${PLUS} Add note</button>`;
+    }
+
+    const showEpisodes = !isBookType(src);
+    const hasEps = src.episodes && src.episodes.length;
+    const epsHTML = showEpisodes ? `
       <p class="section-label">Episodes</p>
       <div class="controls">
         <button class="ctrl-btn" onclick="setAll(true)">Expand all</button>
         <button class="ctrl-btn" onclick="setAll(false)">Collapse all</button>
       </div>
       <div class="episodes-list">
-        ${hasEps ? source.episodes.map((ep, i) => renderEpisode(ep, i)).join('') : `<p style="font-size:0.9rem;color:var(--muted);padding:1rem 0;">No episodes yet.</p>`}
+        ${hasEps ? src.episodes.map((ep,i) => renderEpisode(ep,i)).join('') : `<p style="font-size:0.9rem;color:var(--muted);padding:1rem 0;">No episodes yet.</p>`}
       </div>` : '';
 
     document.getElementById('app').innerHTML =
-      renderKeyIdeas(source.keyIdeas) +
-      renderQuotes(source.quotes) +
-      episodesHTML;
-
-    attachContextMenuListeners();
-  }
-
-  function renderNotFound(s) {
-    document.title = 'Not found';
-    document.getElementById('app').innerHTML = `<div class="not-found"><h2>Source not found</h2><p><a href="index.html">Back to library</a></p></div>`;
+      renderKeyIdeas(src.keyIdeas) + renderQuotes(src.quotes) + epsHTML;
   }
 
   function setAll(open) { document.querySelectorAll('details.episode').forEach(d => d.open = open); }
 
-  // ── CONTEXT MENU ──
-  let ctxTarget = null; // { type: 'note'|'quote'|'episode', index: Number }
-  let longPressTimer = null;
-  const ctxMenu = document.getElementById('ctx-menu');
-
-  function showCtxMenu(x, y, target) {
-    ctxTarget = target;
-    ctxMenu.style.left = `${Math.min(x, window.innerWidth - 180)}px`;
-    ctxMenu.style.top  = `${Math.min(y, window.innerHeight - 80)}px`;
-    ctxMenu.classList.add('open');
+  // ── INIT ──
+  const src = (sources||[]).find(s => slugify(s.title) === slug);
+  if (src) renderSource(src);
+  else {
+    document.getElementById('page-header').innerHTML = '';
+    document.getElementById('app').innerHTML = `<div class="not-found"><h2>Not found</h2><p><a href="index.html">Back to library</a></p></div>`;
   }
 
-  function hideCtxMenu() { ctxMenu.classList.remove('open'); ctxTarget = null; }
+  // ── DROPDOWN ──
+  let ddType = null, ddIndex = null;
+  const dropdown = document.getElementById('dropdown');
 
-  function attachContextMenuListeners() {
-    // Note cards
-    document.querySelectorAll('.note-card[data-type]').forEach(el => {
-      el.addEventListener('contextmenu', e => { e.preventDefault(); showCtxMenu(e.clientX, e.clientY, { type: 'note', index: parseInt(el.dataset.index) }); });
-      el.addEventListener('touchstart', e => { longPressTimer = setTimeout(() => { const t = e.touches[0]; showCtxMenu(t.clientX, t.clientY, { type: 'note', index: parseInt(el.dataset.index) }); }, 600); }, { passive: true });
-      el.addEventListener('touchend', () => clearTimeout(longPressTimer));
-      el.addEventListener('touchmove', () => clearTimeout(longPressTimer));
-    });
-
-    // Quote blocks
-    document.querySelectorAll('.quote-block[data-type]').forEach(el => {
-      el.addEventListener('contextmenu', e => { e.preventDefault(); showCtxMenu(e.clientX, e.clientY, { type: 'quote', index: parseInt(el.dataset.index) }); });
-      el.addEventListener('touchstart', e => { longPressTimer = setTimeout(() => { const t = e.touches[0]; showCtxMenu(t.clientX, t.clientY, { type: 'quote', index: parseInt(el.dataset.index) }); }, 600); }, { passive: true });
-      el.addEventListener('touchend', () => clearTimeout(longPressTimer));
-      el.addEventListener('touchmove', () => clearTimeout(longPressTimer));
-    });
-
-    // Episodes
-    document.querySelectorAll('details.episode[data-type]').forEach(el => {
-      el.addEventListener('contextmenu', e => { e.preventDefault(); showCtxMenu(e.clientX, e.clientY, { type: 'episode', index: parseInt(el.dataset.index) }); });
-      el.addEventListener('touchstart', e => { longPressTimer = setTimeout(() => { const t = e.touches[0]; showCtxMenu(t.clientX, t.clientY, { type: 'episode', index: parseInt(el.dataset.index) }); }, 600); }, { passive: true });
-      el.addEventListener('touchend', () => clearTimeout(longPressTimer));
-      el.addEventListener('touchmove', () => clearTimeout(longPressTimer));
-    });
+  function openDropdown(e, type, index) {
+    e.preventDefault(); e.stopPropagation();
+    ddType = type; ddIndex = index;
+    const rect = e.currentTarget.getBoundingClientRect();
+    dropdown.style.left = Math.min(rect.right, window.innerWidth - 165) + 'px';
+    dropdown.style.top  = (rect.bottom + 4) + 'px';
+    dropdown.classList.add('open');
   }
 
-  // Hide menu when clicking elsewhere
-  document.addEventListener('click', e => { if (!ctxMenu.contains(e.target)) hideCtxMenu(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') { hideCtxMenu(); closeConfirm(); } });
+  document.addEventListener('click', () => dropdown.classList.remove('open'));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { dropdown.classList.remove('open'); closeConfirm(); } });
 
-  // Delete button in context menu
-  document.getElementById('ctx-delete-btn').addEventListener('click', () => {
-    if (!ctxTarget) return;
-    hideCtxMenu();
-    const labels = { note: 'note', quote: 'quote', episode: 'episode' };
-    let label = '';
-    if (ctxTarget.type === 'note') label = `"${currentSource.keyIdeas[ctxTarget.index]?.heading}"`;
-    if (ctxTarget.type === 'quote') label = `quote by ${currentSource.quotes[ctxTarget.index]?.attribution || ''}`;
-    if (ctxTarget.type === 'episode') label = `episode "${currentSource.episodes[ctxTarget.index]?.title}"`;
-    openConfirm(`Delete ${label}?`, () => deleteItem(ctxTarget.type, ctxTarget.index));
+  document.getElementById('dd-edit-btn').addEventListener('click', () => {
+    dropdown.classList.remove('open');
+    if (ddType === 'note')    openNoteModal(ddIndex);
+    if (ddType === 'quote')   openQuoteModal(ddIndex);
+    if (ddType === 'episode') openEpModal(ddIndex);
   });
 
-  // ── CONFIRM DIALOG ──
-  let confirmCallback = null;
+  document.getElementById('dd-delete-btn').addEventListener('click', () => {
+    dropdown.classList.remove('open');
+    const labels = { note: 'note', quote: 'quote', episode: 'episode' };
+    let label = '';
+    if (ddType==='note')    label = `"${currentSource.keyIdeas[ddIndex]?.heading}"`;
+    if (ddType==='quote')   label = `quote by ${currentSource.quotes[ddIndex]?.attribution||''}`;
+    if (ddType==='episode') label = `episode "${currentSource.episodes[ddIndex]?.title}"`;
+    openConfirm(`Delete ${label}?`, () => deleteItem(ddType, ddIndex));
+  });
 
-  function openConfirm(msg, callback) {
-    document.getElementById('confirm-msg').textContent = msg;
-    confirmCallback = callback;
-    document.getElementById('confirm-dialog').classList.add('open');
-  }
-
-  function closeConfirm() {
-    document.getElementById('confirm-dialog').classList.remove('open');
-    confirmCallback = null;
-  }
-
+  // ── CONFIRM ──
+  let confirmCb = null;
+  function openConfirm(msg, cb) { document.getElementById('confirm-msg').textContent = msg; confirmCb = cb; document.getElementById('confirm-dialog').classList.add('open'); }
+  function closeConfirm() { document.getElementById('confirm-dialog').classList.remove('open'); confirmCb = null; }
   document.getElementById('confirm-delete-btn').addEventListener('click', async () => {
-    if (!confirmCallback) return;
+    if (!confirmCb) return;
     const btn = document.getElementById('confirm-delete-btn');
     btn.disabled = true; btn.textContent = 'Deleting…';
-    await confirmCallback();
+    await confirmCb();
     btn.disabled = false; btn.textContent = 'Delete';
     closeConfirm();
   });
 
-  // ── DELETE ITEM ──
+  // ── DELETE ──
   async function deleteItem(type, index) {
     try {
-      const meta = await fetchCurrentFile();
-      const current = atob(meta.content.replace(/\n/g, ''));
-      const match = current.match(/const sources = (\[[\s\S]*\]);/);
-      if (!match) throw new Error('Could not parse data.js');
-
-      const allSources = JSON.parse(match[1]);
-      const idx = allSources.findIndex(s => slugify(s.title) === slug);
-      if (idx === -1) throw new Error('Source not found');
-
-      let commitMsg = '';
-      if (type === 'note') {
-        const removed = allSources[idx].keyIdeas.splice(index, 1)[0];
-        currentSource.keyIdeas.splice(index, 1);
-        commitMsg = `Delete note: ${removed.heading}`;
-      } else if (type === 'quote') {
-        const removed = allSources[idx].quotes.splice(index, 1)[0];
-        currentSource.quotes.splice(index, 1);
-        commitMsg = `Delete quote: ${removed.attribution}`;
-      } else if (type === 'episode') {
-        const removed = allSources[idx].episodes.splice(index, 1)[0];
-        currentSource.episodes.splice(index, 1);
-        commitMsg = `Delete episode: ${removed.title}`;
-      }
-
-      await pushFile(buildDataJs(allSources), meta.sha, commitMsg);
+      let msg = '';
+      await saveToGitHub(s => {
+        if (type==='note')    { msg = `Delete note: ${s.keyIdeas[index]?.heading}`;   s.keyIdeas.splice(index,1); }
+        if (type==='quote')   { msg = `Delete quote: ${s.quotes[index]?.attribution}`; s.quotes.splice(index,1); }
+        if (type==='episode') { msg = `Delete episode: ${s.episodes[index]?.title}`;  s.episodes.splice(index,1); }
+      }, msg || 'Delete item');
+      if (type==='note')    currentSource.keyIdeas.splice(index,1);
+      if (type==='quote')   currentSource.quotes.splice(index,1);
+      if (type==='episode') currentSource.episodes.splice(index,1);
       renderSource(currentSource);
       showToast('✓ Deleted', 'success');
-    } catch (err) {
-      console.error(err);
-      showToast('Error: ' + err.message, 'error');
-    }
-  }
-
-  // ── EPISODE MODAL ──
-  function openEpModal() {
-    if (!currentSource) return;
-    document.getElementById('ep-number').value = ((currentSource.episodes || []).length) + 1;
-    document.getElementById('ep-modal-overlay').classList.add('open');
-    setTimeout(() => document.getElementById('ep-title').focus(), 50);
-  }
-  function closeEpModal() {
-    document.getElementById('ep-modal-overlay').classList.remove('open');
-    ['ep-title','ep-tips','ep-qa'].forEach(id => document.getElementById(id).value = '');
-  }
-  async function saveEpisode() {
-    const number = parseInt(document.getElementById('ep-number').value);
-    const title  = document.getElementById('ep-title').value.trim();
-    if (!title || isNaN(number)) { showToast('Please fill in number and title.', 'error'); return; }
-    const tips = document.getElementById('ep-tips').value.trim().split('\n').map(l => l.trim()).filter(Boolean);
-    const qa   = document.getElementById('ep-qa').value.trim().split('\n').map(l => l.trim()).filter(Boolean).map(l => { const p = l.split('|').map(x => x.trim()); return { q: p[0], a: p[1] || '' }; });
-    const btn = document.getElementById('ep-save-btn');
-    btn.disabled = true; btn.textContent = 'Saving…';
-    try {
-      const meta = await fetchCurrentFile();
-      const allSources = JSON.parse(atob(meta.content.replace(/\n/g, '')).match(/const sources = (\[[\s\S]*\]);/)[1]);
-      const idx = allSources.findIndex(s => slugify(s.title) === slug);
-      allSources[idx].episodes = allSources[idx].episodes || [];
-      allSources[idx].episodes.push({ number, title, tips, qa });
-      await pushFile(buildDataJs(allSources), meta.sha, `Add episode: ${title}`);
-      currentSource.episodes = currentSource.episodes || [];
-      currentSource.episodes.push({ number, title, tips, qa });
-      renderSource(currentSource); closeEpModal();
-      showToast('✓ Episode saved!', 'success');
-    } catch (err) { showToast('Error: ' + err.message, 'error'); }
-    finally { btn.disabled = false; btn.textContent = 'Save episode'; }
+    } catch(err) { showToast('Error: '+err.message, 'error'); }
   }
 
   // ── NOTE MODAL ──
-  function openNoteModal() {
+  let editingNote = null;
+  function openNoteModal(index) {
+    editingNote = (index !== undefined) ? index : null;
+    const isEdit = editingNote !== null;
+    document.getElementById('note-modal-title').textContent = isEdit ? 'Edit note' : 'Add a note';
+    document.getElementById('note-save-btn').textContent    = isEdit ? 'Save changes' : 'Save note';
+    if (isEdit) {
+      const n = currentSource.keyIdeas[editingNote];
+      document.getElementById('note-heading').value = n.heading;
+      document.getElementById('note-text').value    = n.text;
+    } else {
+      document.getElementById('note-heading').value = '';
+      document.getElementById('note-text').value    = '';
+    }
     document.getElementById('note-modal-overlay').classList.add('open');
     setTimeout(() => document.getElementById('note-heading').focus(), 50);
   }
-  function closeNoteModal() {
-    document.getElementById('note-modal-overlay').classList.remove('open');
-    ['note-heading','note-text'].forEach(id => document.getElementById(id).value = '');
-  }
+  function closeNoteModal() { document.getElementById('note-modal-overlay').classList.remove('open'); editingNote = null; }
+
   async function saveNote() {
     const heading = document.getElementById('note-heading').value.trim();
     const text    = document.getElementById('note-text').value.trim();
-    if (!heading || !text) { showToast('Please fill in both fields.', 'error'); return; }
+    if (!heading||!text) { showToast('Please fill in both fields.', 'error'); return; }
     const btn = document.getElementById('note-save-btn');
     btn.disabled = true; btn.textContent = 'Saving…';
     try {
-      const meta = await fetchCurrentFile();
-      const allSources = JSON.parse(atob(meta.content.replace(/\n/g, '')).match(/const sources = (\[[\s\S]*\]);/)[1]);
-      const idx = allSources.findIndex(s => slugify(s.title) === slug);
-      allSources[idx].keyIdeas = allSources[idx].keyIdeas || [];
-      allSources[idx].keyIdeas.push({ heading, text });
-      await pushFile(buildDataJs(allSources), meta.sha, `Add note: ${heading}`);
+      const isEdit = editingNote !== null;
+      await saveToGitHub(s => {
+        s.keyIdeas = s.keyIdeas || [];
+        if (isEdit) s.keyIdeas[editingNote] = { ...s.keyIdeas[editingNote], heading, text };
+        else        s.keyIdeas.push({ heading, text });
+      }, isEdit ? `Edit note: ${heading}` : `Add note: ${heading}`);
       currentSource.keyIdeas = currentSource.keyIdeas || [];
-      currentSource.keyIdeas.push({ heading, text });
+      if (isEdit) currentSource.keyIdeas[editingNote] = { ...currentSource.keyIdeas[editingNote], heading, text };
+      else        currentSource.keyIdeas.push({ heading, text });
       renderSource(currentSource); closeNoteModal();
-      showToast('✓ Note saved!', 'success');
-    } catch (err) { showToast('Error: ' + err.message, 'error'); }
-    finally { btn.disabled = false; btn.textContent = 'Save note'; }
+      showToast(isEdit ? '✓ Note updated!' : '✓ Note saved!', 'success');
+    } catch(err) { showToast('Error: '+err.message, 'error'); }
+    finally { btn.disabled = false; btn.textContent = editingNote !== null ? 'Save changes' : 'Save note'; }
   }
 
-  // Modal overlay close
-  document.getElementById('ep-modal-overlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeEpModal(); });
-  document.getElementById('note-modal-overlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeNoteModal(); });
+  // ── QUOTE MODAL ──
+  let editingQuote = null;
+  function openQuoteModal(index) {
+    editingQuote = (index !== undefined) ? index : null;
+    const isEdit = editingQuote !== null;
+    document.getElementById('quote-modal-title').textContent = isEdit ? 'Edit quote' : 'Add a quote';
+    document.getElementById('quote-save-btn').textContent    = isEdit ? 'Save changes' : 'Save quote';
+    if (isEdit) {
+      const q = currentSource.quotes[editingQuote];
+      document.getElementById('quote-text').value = q.text;
+      document.getElementById('quote-attr').value = q.attribution;
+    } else {
+      document.getElementById('quote-text').value = '';
+      document.getElementById('quote-attr').value = '';
+    }
+    document.getElementById('quote-modal-overlay').classList.add('open');
+    setTimeout(() => document.getElementById('quote-text').focus(), 50);
+  }
+  function closeQuoteModal() { document.getElementById('quote-modal-overlay').classList.remove('open'); editingQuote = null; }
 
-  // ── INIT ──
-  const src = (sources || []).find(s => slugify(s.title) === slug);
-  src ? renderSource(src) : renderNotFound(slug);
+  async function saveQuote() {
+    const text = document.getElementById('quote-text').value.trim();
+    const attr = document.getElementById('quote-attr').value.trim();
+    if (!text||!attr) { showToast('Please fill in both fields.', 'error'); return; }
+    const btn = document.getElementById('quote-save-btn');
+    btn.disabled = true; btn.textContent = 'Saving…';
+    try {
+      const isEdit = editingQuote !== null;
+      await saveToGitHub(s => {
+        s.quotes = s.quotes || [];
+        if (isEdit) s.quotes[editingQuote] = { text, attribution: attr };
+        else        s.quotes.push({ text, attribution: attr });
+      }, isEdit ? `Edit quote: ${attr}` : `Add quote: ${attr}`);
+      currentSource.quotes = currentSource.quotes || [];
+      if (isEdit) currentSource.quotes[editingQuote] = { text, attribution: attr };
+      else        currentSource.quotes.push({ text, attribution: attr });
+      renderSource(currentSource); closeQuoteModal();
+      showToast(isEdit ? '✓ Quote updated!' : '✓ Quote saved!', 'success');
+    } catch(err) { showToast('Error: '+err.message, 'error'); }
+    finally { btn.disabled = false; btn.textContent = editingQuote !== null ? 'Save changes' : 'Save quote'; }
+  }
+
+  // ── EPISODE MODAL ──
+  let editingEp = null;
+  function openEpModal(index) {
+    editingEp = (index !== undefined) ? index : null;
+    const isEdit = editingEp !== null;
+    document.getElementById('ep-modal-title').textContent = isEdit ? 'Edit episode' : 'Add an episode';
+    document.getElementById('ep-save-btn').textContent    = isEdit ? 'Save changes' : 'Save episode';
+    if (isEdit) {
+      const ep = currentSource.episodes[editingEp];
+      document.getElementById('ep-number').value = ep.number;
+      document.getElementById('ep-title').value  = ep.title;
+      document.getElementById('ep-tips').value   = (ep.tips||[]).join('\n');
+      document.getElementById('ep-qa').value     = (ep.qa||[]).map(q => `${q.q} | ${q.a}`).join('\n');
+    } else {
+      const nextNum = ((currentSource.episodes||[]).length) + 1;
+      document.getElementById('ep-number').value = nextNum;
+      ['ep-title','ep-tips','ep-qa'].forEach(id => document.getElementById(id).value = '');
+    }
+    document.getElementById('ep-modal-overlay').classList.add('open');
+    setTimeout(() => document.getElementById('ep-title').focus(), 50);
+  }
+  function closeEpModal() { document.getElementById('ep-modal-overlay').classList.remove('open'); editingEp = null; }
+
+  async function saveEpisode() {
+    const number = parseInt(document.getElementById('ep-number').value);
+    const title  = document.getElementById('ep-title').value.trim();
+    if (!title||isNaN(number)) { showToast('Please fill in number and title.', 'error'); return; }
+    const tips = document.getElementById('ep-tips').value.trim().split('\n').map(l=>l.trim()).filter(Boolean);
+    const qa   = document.getElementById('ep-qa').value.trim().split('\n').map(l=>l.trim()).filter(Boolean).map(l => { const p=l.split('|').map(x=>x.trim()); return {q:p[0],a:p[1]||''}; });
+    const btn  = document.getElementById('ep-save-btn');
+    btn.disabled = true; btn.textContent = 'Saving…';
+    try {
+      const isEdit = editingEp !== null;
+      await saveToGitHub(s => {
+        s.episodes = s.episodes || [];
+        if (isEdit) s.episodes[editingEp] = { number, title, tips, qa };
+        else        s.episodes.push({ number, title, tips, qa });
+      }, isEdit ? `Edit episode: ${title}` : `Add episode: ${title}`);
+      currentSource.episodes = currentSource.episodes || [];
+      if (isEdit) currentSource.episodes[editingEp] = { number, title, tips, qa };
+      else        currentSource.episodes.push({ number, title, tips, qa });
+      renderSource(currentSource); closeEpModal();
+      showToast(isEdit ? '✓ Episode updated!' : '✓ Episode saved!', 'success');
+    } catch(err) { showToast('Error: '+err.message, 'error'); }
+    finally { btn.disabled = false; btn.textContent = editingEp !== null ? 'Save changes' : 'Save episode'; }
+  }
+
+  // Close modals on overlay click
+  ['note-modal-overlay','quote-modal-overlay','ep-modal-overlay'].forEach(id => {
+    document.getElementById(id).addEventListener('click', e => { if (e.target === e.currentTarget) e.currentTarget.classList.remove('open'); });
+  });
 </script>
 </body>
 </html>

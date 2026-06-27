@@ -15,168 +15,93 @@
       --rule:      #e0dbd3;
       --card:      #ffffff;
       --green:     #2a7a4f;
-      --green-lt:  #e6f4ed;
       --tip-bg:    #f0ede8;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      background: var(--paper);
-      color: var(--ink);
-      font-family: 'Inter', sans-serif;
-      font-size: 16px;
-      line-height: 1.7;
-      min-height: 100vh;
-    }
+    body { background: var(--paper); color: var(--ink); font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.7; min-height: 100vh; }
 
     /* ── HEADER ── */
-    header {
-      border-bottom: 2px solid var(--ink);
-      padding: 3.5rem 2rem 2.5rem;
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .header-text .eyebrow {
-      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;
-    }
-
-    h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2.4rem, 6vw, 4rem);
-      line-height: 1.05; color: var(--ink);
-    }
-
+    header { border-bottom: 2px solid var(--ink); padding: 3.5rem 2rem 2.5rem; max-width: 900px; margin: 0 auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .header-text .eyebrow { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.05; color: var(--ink); }
     .subtitle { margin-top: 0.6rem; color: var(--muted); font-size: 0.92rem; }
-
-    .add-btn {
-      flex-shrink: 0; display: inline-flex; align-items: center; gap: 0.45rem;
-      background: var(--accent); color: #fff; font-size: 0.85rem; font-weight: 600;
-      padding: 0.6rem 1.2rem; border-radius: 24px; border: none; cursor: pointer;
-      text-decoration: none; transition: opacity 0.15s, transform 0.15s; white-space: nowrap;
-    }
+    .add-btn { flex-shrink: 0; display: inline-flex; align-items: center; gap: 0.45rem; background: var(--accent); color: #fff; font-size: 0.85rem; font-weight: 600; padding: 0.6rem 1.2rem; border-radius: 24px; border: none; cursor: pointer; transition: opacity 0.15s, transform 0.15s; white-space: nowrap; }
     .add-btn:hover { opacity: 0.88; transform: translateY(-1px); }
 
-    /* ── MAIN LAYOUT ── */
-    .page-body {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2.5rem 2rem 6rem;
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 2rem;
-      align-items: start;
-    }
+    /* ── PAGE LAYOUT ── */
+    .page-body { max-width: 900px; margin: 0 auto; padding: 2.5rem 2rem 6rem; display: grid; grid-template-columns: 200px 1fr; gap: 2rem; align-items: start; }
 
     /* ── FILTER SIDEBAR ── */
-    .filter-sidebar {
-      position: sticky;
-      top: 1.5rem;
-    }
-
+    .filter-sidebar { position: sticky; top: 1.5rem; }
     .filter-section { margin-bottom: 1.6rem; }
-
-    .filter-label {
-      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.13em;
-      text-transform: uppercase; color: var(--muted);
-      margin-bottom: 0.6rem; display: block;
-    }
-
-    .filter-option {
-      display: flex; align-items: center; gap: 0.5rem;
-      font-size: 0.88rem; color: var(--ink);
-      padding: 0.3rem 0; cursor: pointer;
-      user-select: none;
-    }
-
-    .filter-option input[type="checkbox"] {
-      width: 1rem; height: 1rem;
-      accent-color: var(--accent); cursor: pointer; flex-shrink: 0;
-    }
-
+    .filter-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; display: block; }
+    .filter-option { display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: var(--ink); padding: 0.3rem 0; cursor: pointer; user-select: none; }
+    .filter-option input[type="checkbox"] { width: 1rem; height: 1rem; accent-color: var(--accent); cursor: pointer; flex-shrink: 0; }
     .filter-divider { border: none; border-top: 1px solid var(--rule); margin: 1.2rem 0; }
-
-    .sort-select {
-      width: 100%; font-family: 'Inter', sans-serif; font-size: 0.88rem;
-      color: var(--ink); background: var(--card); border: 1.5px solid var(--rule);
-      border-radius: 8px; padding: 0.5rem 0.7rem; outline: none;
-      cursor: pointer; transition: border-color 0.15s;
-    }
+    .sort-select { width: 100%; font-family: 'Inter', sans-serif; font-size: 0.88rem; color: var(--ink); background: var(--card); border: 1.5px solid var(--rule); border-radius: 8px; padding: 0.5rem 0.7rem; outline: none; cursor: pointer; transition: border-color 0.15s; }
     .sort-select:focus { border-color: var(--accent); }
-
-    .filter-reset {
-      font-size: 0.78rem; font-weight: 600; color: var(--accent);
-      background: none; border: none; cursor: pointer; padding: 0;
-      margin-top: 0.8rem; text-decoration: underline; text-underline-offset: 3px;
-    }
-
-    .result-count {
-      font-size: 0.78rem; color: var(--muted);
-      margin-bottom: 1rem;
-    }
+    .filter-reset { font-size: 0.78rem; font-weight: 600; color: var(--accent); background: none; border: none; cursor: pointer; padding: 0; margin-top: 0.8rem; text-decoration: underline; text-underline-offset: 3px; }
+    .result-count { font-size: 0.78rem; color: var(--muted); margin-bottom: 1rem; }
 
     /* ── GRID ── */
-    .library-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1.1rem;
-    }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.1rem; }
 
     /* ── CARD ── */
-    a.source-card {
-      display: flex; flex-direction: column;
-      background: var(--card); border: 1px solid var(--rule);
-      border-radius: 12px; padding: 1.4rem 1.4rem 1.2rem;
-      text-decoration: none; color: inherit;
-      transition: box-shadow 0.2s, border-color 0.2s, transform 0.15s;
-      position: relative;
-    }
+    .source-card-wrap { position: relative; }
+
+    a.source-card { display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 1.4rem 1.4rem 1.2rem; text-decoration: none; color: inherit; transition: box-shadow 0.2s, border-color 0.2s, transform 0.15s; }
     a.source-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.09); border-color: var(--accent); transform: translateY(-2px); }
 
     .card-type { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
-    .card-title { font-family: 'DM Serif Display', serif; font-size: 1.35rem; line-height: 1.2; color: var(--ink); margin-bottom: 0.6rem; }
+    .card-title { font-family: 'DM Serif Display', serif; font-size: 1.35rem; line-height: 1.2; color: var(--ink); margin-bottom: 0.4rem; }
     .card-date { font-size: 0.72rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .card-meta { display: flex; gap: 1rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--rule); font-size: 0.76rem; color: var(--muted); }
 
-    .card-meta {
-      display: flex; gap: 1rem; margin-top: auto;
-      padding-top: 1rem; border-top: 1px solid var(--rule);
-      font-size: 0.76rem; color: var(--muted);
+    /* ⋯ MENU BUTTON ON CARD */
+    .card-menu-btn {
+      position: absolute; top: 0.75rem; right: 0.75rem;
+      width: 1.8rem; height: 1.8rem;
+      border-radius: 50%; border: none;
+      background: var(--card); color: var(--muted);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; opacity: 0;
+      transition: opacity 0.15s, background 0.15s, color 0.15s;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      z-index: 2;
     }
-
-    .card-arrow { position: absolute; top: 1.3rem; right: 1.3rem; color: var(--rule); transition: color 0.2s; }
-    a.source-card:hover .card-arrow { color: var(--accent); }
+    .source-card-wrap:hover .card-menu-btn { opacity: 1; }
+    .card-menu-btn:hover { background: var(--tip-bg); color: var(--ink); }
+    /* Always visible on touch devices */
+    @media (hover: none) { .card-menu-btn { opacity: 1; } }
 
     .empty { color: var(--muted); font-size: 0.9rem; padding: 2rem 0; }
 
-    /* ── CONTEXT MENU ── */
-    .ctx-menu {
+    /* ── DROPDOWN MENU ── */
+    .dropdown {
       position: fixed; background: var(--card); border: 1px solid var(--rule);
       border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.14);
-      padding: 0.4rem; z-index: 500; min-width: 160px; display: none;
+      padding: 0.4rem; z-index: 500; min-width: 150px; display: none;
     }
-    .ctx-menu.open { display: block; }
-    .ctx-menu-item {
-      display: flex; align-items: center; gap: 0.6rem; padding: 0.55rem 0.8rem;
-      border-radius: 6px; font-size: 0.88rem; font-weight: 500; cursor: pointer;
+    .dropdown.open { display: block; }
+    .dropdown-item {
+      display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.8rem;
+      border-radius: 6px; font-size: 0.86rem; font-weight: 500; cursor: pointer;
       color: var(--ink); transition: background 0.12s; border: none;
       background: none; width: 100%; text-align: left;
     }
-    .ctx-menu-item--danger { color: #b03a2e; }
-    .ctx-menu-item--danger:hover { background: #fdf0ef; }
+    .dropdown-item:hover { background: var(--tip-bg); }
+    .dropdown-item--danger { color: #b03a2e; }
+    .dropdown-item--danger:hover { background: #fdf0ef; }
+    .dropdown-divider { border: none; border-top: 1px solid var(--rule); margin: 0.3rem 0; }
 
-    /* ── CONFIRM DIALOG ── */
+    /* ── CONFIRM ── */
     .confirm-dialog { position: fixed; inset: 0; background: rgba(26,26,26,0.55); z-index: 600; display: none; align-items: center; justify-content: center; padding: 1rem; }
     .confirm-dialog.open { display: flex; }
     .confirm-box { background: var(--card); border-radius: 14px; padding: 1.8rem; max-width: 360px; width: 100%; box-shadow: 0 16px 48px rgba(0,0,0,0.18); text-align: center; }
     .confirm-box h3 { font-family: 'DM Serif Display', serif; font-size: 1.3rem; margin-bottom: 0.5rem; }
-    .confirm-box p  { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.4rem; }
+    .confirm-box p { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.4rem; }
     .confirm-actions { display: flex; gap: 0.7rem; }
     .btn-danger { flex: 1; background: #b03a2e; color: #fff; border: none; border-radius: 24px; padding: 0.7rem; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: opacity 0.15s; }
     .btn-danger:hover { opacity: 0.88; }
@@ -210,7 +135,6 @@
     .toast.success { background: var(--green); }
     .toast.error   { background: #b03a2e; }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 680px) {
       .page-body { grid-template-columns: 1fr; padding-left: 1.1rem; padding-right: 1.1rem; }
       .filter-sidebar { position: static; background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 1.2rem; }
@@ -234,17 +158,12 @@
 </header>
 
 <div class="page-body">
-
-  <!-- FILTER SIDEBAR -->
   <aside class="filter-sidebar">
-
     <div class="filter-section">
       <span class="filter-label">Content type</span>
       <div id="type-filters"></div>
     </div>
-
     <hr class="filter-divider" />
-
     <div class="filter-section">
       <span class="filter-label">Sort by</span>
       <select class="sort-select" id="sort-select" onchange="applyFilters()">
@@ -254,26 +173,21 @@
         <option value="title-desc">Title Z → A</option>
       </select>
     </div>
-
     <hr class="filter-divider" />
-
     <button class="filter-reset" onclick="resetFilters()">Reset filters</button>
-
   </aside>
 
-  <!-- CONTENT -->
   <div>
     <p class="result-count" id="result-count"></p>
     <div class="library-grid" id="grid"></div>
   </div>
-
 </div>
 
-<!-- ADD BOOK MODAL -->
+<!-- ADD / EDIT SOURCE MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">✕</button>
-    <h2 class="modal-title">Add a book or podcast</h2>
+    <h2 class="modal-title" id="modal-title">Add a book or podcast</h2>
     <div class="form-group">
       <label>Title *</label>
       <input type="text" id="f-title" placeholder="e.g. The Making of a Manager" />
@@ -296,12 +210,12 @@
       <label>Link label (optional)</label>
       <input type="text" id="f-link-label" placeholder="e.g. View on Goodreads ↗" />
     </div>
-    <div class="form-group">
+    <div id="f-ideas-group" class="form-group">
       <label>Key ideas (optional)</label>
       <textarea id="f-ideas" placeholder="One idea per line. Format: Heading | Description"></textarea>
       <p class="form-hint">Use <strong>Heading | Text</strong> format per line.</p>
     </div>
-    <div class="form-group">
+    <div id="f-quotes-group" class="form-group">
       <label>Quotes (optional)</label>
       <textarea id="f-quotes" placeholder="One quote per line. Format: Quote | Attribution"></textarea>
     </div>
@@ -312,10 +226,15 @@
   </div>
 </div>
 
-<!-- CONTEXT MENU -->
-<div class="ctx-menu" id="ctx-menu">
-  <button class="ctx-menu-item ctx-menu-item--danger" id="ctx-delete-btn">
-    <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 17 6"/><path d="M8 6V4h4v2"/><path d="M19 6l-1 12a2 2 0 01-2 2H4a2 2 0 01-2-2L1 6"/></svg>
+<!-- DROPDOWN MENU -->
+<div class="dropdown" id="dropdown">
+  <button class="dropdown-item" id="dd-edit-btn">
+    <svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 4l5 5-9 9H2v-5L11 4z"/></svg>
+    Edit
+  </button>
+  <div class="dropdown-divider"></div>
+  <button class="dropdown-item dropdown-item--danger" id="dd-delete-btn">
+    <svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 17 6"/><path d="M8 6V4h4v2"/><path d="M19 6l-1 12a2 2 0 01-2 2H4a2 2 0 01-2-2L1 6"/></svg>
     Delete
   </button>
 </div>
@@ -323,8 +242,8 @@
 <!-- CONFIRM DIALOG -->
 <div class="confirm-dialog" id="confirm-dialog">
   <div class="confirm-box">
-    <h3>Delete this entry?</h3>
-    <p id="confirm-msg">All notes and episodes will be lost. This cannot be undone.</p>
+    <h3>Are you sure?</h3>
+    <p id="confirm-msg">This cannot be undone.</p>
     <div class="confirm-actions">
       <button class="btn-secondary" onclick="closeConfirm()">Cancel</button>
       <button class="btn-danger" id="confirm-delete-btn">Delete</button>
@@ -343,59 +262,70 @@
   const GITHUB_TOKEN = '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';
   const API_BASE     = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
 
-  function slugify(str) { return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+  const DOTS_SVG = `<svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="4" r="1.5"/><circle cx="10" cy="10" r="1.5"/><circle cx="10" cy="16" r="1.5"/></svg>`;
 
-  function formatDate(str) {
-    if (!str) return '';
-    const d = new Date(str + 'T00:00:00');
-    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+  function slugify(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+  function today()    { return new Date().toISOString().split('T')[0]; }
+  function formatDate(s) {
+    if (!s) return '';
+    return new Date(s + 'T00:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
   }
 
-  function today() { return new Date().toISOString().split('T')[0]; }
+  // ── GITHUB HELPERS ──
+  async function fetchCurrentFile() {
+    const r = await fetch(API_BASE, { headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github+json' } });
+    if (!r.ok) throw new Error(`GitHub read failed: ${r.status}`);
+    return r.json();
+  }
+  async function pushFile(content, sha, msg) {
+    const r = await fetch(API_BASE, {
+      method: 'PUT',
+      headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: msg, content: btoa(unescape(encodeURIComponent(content))), sha }),
+    });
+    if (!r.ok) { const e = await r.json(); throw new Error(e.message || 'Write failed'); }
+  }
+  function buildDataJs(arr) {
+    return `// ============================================================\n//  DATA FILE\n// ============================================================\n\nconst sources = ${JSON.stringify(arr, null, 2)};\n`;
+  }
+  function parseLines(raw) {
+    return raw.split('\n').map(l => l.trim()).filter(Boolean).map(l => l.split('|').map(p => p.trim()));
+  }
+
+  // ── TOAST ──
+  function showToast(msg, type = '') {
+    const t = document.getElementById('toast');
+    t.textContent = msg; t.className = 'toast show ' + type;
+    setTimeout(() => t.className = 'toast', 3500);
+  }
 
   // ── FILTERS ──
-  let activeTypes = new Set();
-
   function buildTypeFilters() {
     const types = [...new Set(sources.map(s => s.type))].sort();
-    activeTypes = new Set(types); // all selected by default
-    const container = document.getElementById('type-filters');
-    container.innerHTML = types.map(t => `
+    document.getElementById('type-filters').innerHTML = types.map(t => `
       <label class="filter-option">
-        <input type="checkbox" value="${t}" checked onchange="applyFilters()" />
-        ${t}
+        <input type="checkbox" value="${t}" checked onchange="applyFilters()" />${t}
       </label>`).join('');
   }
 
-  function getActiveTypes() {
-    return [...document.querySelectorAll('#type-filters input:checked')].map(el => el.value);
-  }
-
   function applyFilters() {
-    const types = new Set(getActiveTypes());
-    const sort  = document.getElementById('sort-select').value;
-
+    const types  = new Set([...document.querySelectorAll('#type-filters input:checked')].map(e => e.value));
+    const sort   = document.getElementById('sort-select').value;
     let filtered = sources.filter(s => types.has(s.type));
-
     filtered.sort((a, b) => {
-      if (sort === 'date-desc') return (b.dateAdded || '').localeCompare(a.dateAdded || '');
-      if (sort === 'date-asc')  return (a.dateAdded || '').localeCompare(b.dateAdded || '');
-      if (sort === 'title-asc') return a.title.localeCompare(b.title);
+      if (sort === 'date-desc')  return (b.dateAdded||'').localeCompare(a.dateAdded||'');
+      if (sort === 'date-asc')   return (a.dateAdded||'').localeCompare(b.dateAdded||'');
+      if (sort === 'title-asc')  return a.title.localeCompare(b.title);
       if (sort === 'title-desc') return b.title.localeCompare(a.title);
-      return 0;
     });
-
     renderGrid(filtered);
-    attachCardListeners();
-
-    const total = sources.length;
-    const shown = filtered.length;
+    const shown = filtered.length, total = sources.length;
     document.getElementById('result-count').textContent =
       shown === total ? `${total} entr${total !== 1 ? 'ies' : 'y'}` : `${shown} of ${total} entries`;
   }
 
   function resetFilters() {
-    document.querySelectorAll('#type-filters input').forEach(el => el.checked = true);
+    document.querySelectorAll('#type-filters input').forEach(e => e.checked = true);
     document.getElementById('sort-select').value = 'date-desc';
     applyFilters();
   }
@@ -403,192 +333,178 @@
   // ── RENDER GRID ──
   function renderGrid(list) {
     const grid = document.getElementById('grid');
-    if (!list || list.length === 0) {
-      grid.innerHTML = '<p class="empty">No entries match the current filters.</p>';
-      return;
-    }
+    if (!list || !list.length) { grid.innerHTML = '<p class="empty">No entries match the current filters.</p>'; return; }
     grid.innerHTML = list.map(source => {
-      const slug     = slugify(source.title);
-      const epCount  = (source.episodes || []).length;
+      const slug = slugify(source.title);
+      const epCount   = (source.episodes || []).length;
       const ideaCount = (source.keyIdeas || []).length + (source.quotes || []).length;
-      const dateStr  = source.dateAdded ? formatDate(source.dateAdded) : '';
       return `
-        <a class="source-card" href="source.html?s=${slug}">
-          <svg class="card-arrow" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="5" y1="10" x2="15" y2="10"/><polyline points="11 6 15 10 11 14"/>
-          </svg>
-          <p class="card-type">${source.type}</p>
-          <h2 class="card-title">${source.title}</h2>
-          ${dateStr ? `<p class="card-date">Added ${dateStr}</p>` : ''}
-          <div class="card-meta">
-            ${epCount  > 0 ? `<span>📖 ${epCount} episode${epCount !== 1 ? 's' : ''}</span>` : ''}
-            ${ideaCount > 0 ? `<span>💡 ${ideaCount} note${ideaCount !== 1 ? 's' : ''}</span>` : ''}
-          </div>
-        </a>`;
+        <div class="source-card-wrap">
+          <button class="card-menu-btn" data-slug="${slug}" onclick="openDropdown(event, '${slug}')" title="Options">${DOTS_SVG}</button>
+          <a class="source-card" href="source.html?s=${slug}">
+            <p class="card-type">${source.type}</p>
+            <h2 class="card-title">${source.title}</h2>
+            ${source.dateAdded ? `<p class="card-date">Added ${formatDate(source.dateAdded)}</p>` : ''}
+            <div class="card-meta">
+              ${epCount   > 0 ? `<span>📖 ${epCount} episode${epCount !== 1 ? 's' : ''}</span>` : ''}
+              ${ideaCount > 0 ? `<span>💡 ${ideaCount} note${ideaCount !== 1 ? 's' : ''}</span>` : ''}
+            </div>
+          </a>
+        </div>`;
     }).join('');
+  }
+
+  // ── DROPDOWN ──
+  let ddSlug = null;
+  const dropdown = document.getElementById('dropdown');
+
+  function openDropdown(e, slug) {
+    e.preventDefault(); e.stopPropagation();
+    ddSlug = slug;
+    const rect = e.currentTarget.getBoundingClientRect();
+    dropdown.style.left = Math.min(rect.right, window.innerWidth - 165) + 'px';
+    dropdown.style.top  = (rect.bottom + 6) + 'px';
+    dropdown.classList.add('open');
+  }
+
+  document.addEventListener('click', () => dropdown.classList.remove('open'));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { dropdown.classList.remove('open'); closeConfirm(); closeModal(); } });
+
+  document.getElementById('dd-edit-btn').addEventListener('click', () => {
+    dropdown.classList.remove('open');
+    const src = sources.find(s => slugify(s.title) === ddSlug);
+    if (!src) return;
+    openEditModal(src);
+  });
+
+  document.getElementById('dd-delete-btn').addEventListener('click', () => {
+    dropdown.classList.remove('open');
+    const src = sources.find(s => slugify(s.title) === ddSlug);
+    openConfirm(`Delete "${src ? src.title : ddSlug}"? All notes and episodes will be lost.`, () => deleteSource(ddSlug));
+  });
+
+  // ── CONFIRM ──
+  let confirmCb = null;
+  function openConfirm(msg, cb) { document.getElementById('confirm-msg').textContent = msg; confirmCb = cb; document.getElementById('confirm-dialog').classList.add('open'); }
+  function closeConfirm() { document.getElementById('confirm-dialog').classList.remove('open'); confirmCb = null; }
+  document.getElementById('confirm-delete-btn').addEventListener('click', async () => {
+    if (!confirmCb) return;
+    const btn = document.getElementById('confirm-delete-btn');
+    btn.disabled = true; btn.textContent = 'Deleting…';
+    await confirmCb();
+    btn.disabled = false; btn.textContent = 'Delete';
+    closeConfirm();
+  });
+
+  // ── ADD MODAL ──
+  let editingSlug = null;
+
+  function openModal() {
+    editingSlug = null;
+    document.getElementById('modal-title').textContent = 'Add a book or podcast';
+    document.getElementById('save-btn').textContent = 'Save to library';
+    document.getElementById('f-ideas-group').style.display = '';
+    document.getElementById('f-quotes-group').style.display = '';
+    clearForm();
+    document.getElementById('modal-overlay').classList.add('open');
+    setTimeout(() => document.getElementById('f-title').focus(), 50);
+  }
+
+  function openEditModal(src) {
+    editingSlug = slugify(src.title);
+    document.getElementById('modal-title').textContent = 'Edit entry';
+    document.getElementById('save-btn').textContent = 'Save changes';
+    // Hide bulk idea/quote fields in edit mode (edit individually on source page)
+    document.getElementById('f-ideas-group').style.display = 'none';
+    document.getElementById('f-quotes-group').style.display = 'none';
+    document.getElementById('f-title').value = src.title;
+    // Set type
+    const typeEl = document.getElementById('f-type');
+    [...typeEl.options].forEach(o => o.selected = o.value === src.type);
+    document.getElementById('f-link').value      = src.link      || '';
+    document.getElementById('f-link-label').value = src.linkLabel || '';
+    document.getElementById('modal-overlay').classList.add('open');
+    setTimeout(() => document.getElementById('f-title').focus(), 50);
+  }
+
+  function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); clearForm(); editingSlug = null; }
+  function handleOverlayClick(e) { if (e.target === document.getElementById('modal-overlay')) closeModal(); }
+  function clearForm() {
+    ['f-title','f-link','f-link-label','f-ideas','f-quotes'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+    document.getElementById('f-type').selectedIndex = 0;
+  }
+
+  async function saveSource() {
+    const title     = document.getElementById('f-title').value.trim();
+    if (!title) { showToast('Please enter a title.', 'error'); return; }
+    const type      = document.getElementById('f-type').value;
+    const link      = document.getElementById('f-link').value.trim();
+    const linkLabel = document.getElementById('f-link-label').value.trim();
+    const btn       = document.getElementById('save-btn');
+    btn.disabled = true; btn.textContent = 'Saving…';
+
+    try {
+      const meta       = await fetchCurrentFile();
+      const current    = atob(meta.content.replace(/\n/g, ''));
+      const match      = current.match(/const sources = (\[[\s\S]*\]);/);
+      if (!match) throw new Error('Could not parse data.js');
+      const allSources = JSON.parse(match[1]);
+
+      if (editingSlug) {
+        // Edit existing
+        const idx = allSources.findIndex(s => slugify(s.title) === editingSlug);
+        if (idx === -1) throw new Error('Source not found');
+        allSources[idx].title     = title;
+        allSources[idx].type      = type;
+        allSources[idx].link      = link      || undefined;
+        allSources[idx].linkLabel = linkLabel || undefined;
+        // Mirror in local array
+        const li = sources.findIndex(s => slugify(s.title) === editingSlug);
+        if (li !== -1) { sources[li].title = title; sources[li].type = type; sources[li].link = link; sources[li].linkLabel = linkLabel; }
+        await pushFile(buildDataJs(allSources), meta.sha, `Edit: ${title}`);
+        showToast('✓ Changes saved!', 'success');
+      } else {
+        // Add new
+        const ideasRaw  = (document.getElementById('f-ideas').value || '').trim();
+        const quotesRaw = (document.getElementById('f-quotes').value || '').trim();
+        const keyIdeas  = ideasRaw  ? parseLines(ideasRaw).map(p => ({ heading: p[0], text: p[1] || '' })) : [];
+        const quotes    = quotesRaw ? parseLines(quotesRaw).map(p => ({ text: p[0], attribution: p[1] || '' })) : [];
+        const newSrc    = { title, type, dateAdded: today(), ...(link ? { link } : {}), ...(linkLabel ? { linkLabel } : {}), keyIdeas, quotes, episodes: [] };
+        allSources.push(newSrc);
+        sources.push(newSrc);
+        await pushFile(buildDataJs(allSources), meta.sha, `Add: ${title}`);
+        showToast('✓ Saved to library!', 'success');
+      }
+
+      buildTypeFilters();
+      applyFilters();
+      closeModal();
+    } catch (err) {
+      console.error(err); showToast('Error: ' + err.message, 'error');
+    } finally {
+      btn.disabled = false; btn.textContent = editingSlug ? 'Save changes' : 'Save to library';
+    }
+  }
+
+  // ── DELETE SOURCE ──
+  async function deleteSource(slug) {
+    try {
+      const meta       = await fetchCurrentFile();
+      const allSources = JSON.parse(atob(meta.content.replace(/\n/g, '')).match(/const sources = (\[[\s\S]*\]);/)[1]);
+      const idx        = allSources.findIndex(s => slugify(s.title) === slug);
+      if (idx === -1) throw new Error('Source not found');
+      const removed    = allSources.splice(idx, 1)[0];
+      await pushFile(buildDataJs(allSources), meta.sha, `Delete: ${removed.title}`);
+      const li = sources.findIndex(s => slugify(s.title) === slug);
+      if (li !== -1) sources.splice(li, 1);
+      buildTypeFilters(); applyFilters();
+      showToast('✓ Deleted', 'success');
+    } catch (err) { showToast('Error: ' + err.message, 'error'); }
   }
 
   // ── INIT ──
   buildTypeFilters();
   applyFilters();
-
-  // ── MODAL ──
-  function openModal() { document.getElementById('modal-overlay').classList.add('open'); document.getElementById('f-title').focus(); }
-  function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); clearForm(); }
-  function handleOverlayClick(e) { if (e.target === document.getElementById('modal-overlay')) closeModal(); }
-  function clearForm() {
-    ['f-title','f-link','f-link-label','f-ideas','f-quotes'].forEach(id => document.getElementById(id).value = '');
-    document.getElementById('f-type').selectedIndex = 0;
-  }
-
-  // ── TOAST ──
-  function showToast(msg, type = '') {
-    const t = document.getElementById('toast');
-    t.textContent = msg; t.className = 'toast show ' + type;
-    setTimeout(() => { t.className = 'toast'; }, 3500);
-  }
-
-  function parseLines(raw) {
-    return raw.split('\n').map(l => l.trim()).filter(Boolean).map(l => l.split('|').map(p => p.trim()));
-  }
-
-  // ── GITHUB HELPERS ──
-  async function fetchCurrentFile() {
-    const res = await fetch(API_BASE, { headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github+json' } });
-    if (!res.ok) throw new Error(`GitHub read failed: ${res.status}`);
-    return res.json();
-  }
-
-  async function pushFile(content, sha, message) {
-    const encoded = btoa(unescape(encodeURIComponent(content)));
-    const res = await fetch(API_BASE, {
-      method: 'PUT',
-      headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message, content: encoded, sha }),
-    });
-    if (!res.ok) { const err = await res.json(); throw new Error(err.message || `GitHub write failed: ${res.status}`); }
-  }
-
-  function buildDataJs(arr) {
-    return `// ============================================================\n//  DATA FILE\n// ============================================================\n\nconst sources = ${JSON.stringify(arr, null, 2)};\n`;
-  }
-
-  // ── SAVE NEW SOURCE ──
-  async function saveSource() {
-    const title = document.getElementById('f-title').value.trim();
-    if (!title) { showToast('Please enter a title.', 'error'); return; }
-
-    const type      = document.getElementById('f-type').value;
-    const link      = document.getElementById('f-link').value.trim();
-    const linkLabel = document.getElementById('f-link-label').value.trim();
-    const ideasRaw  = document.getElementById('f-ideas').value.trim();
-    const quotesRaw = document.getElementById('f-quotes').value.trim();
-
-    const keyIdeas = ideasRaw ? parseLines(ideasRaw).map(p => ({ heading: p[0], text: p[1] || '' })) : [];
-    const quotes   = quotesRaw ? parseLines(quotesRaw).map(p => ({ text: p[0], attribution: p[1] || '' })) : [];
-
-    const newSource = {
-      title, type,
-      dateAdded: today(),
-      ...(link ? { link } : {}),
-      ...(linkLabel ? { linkLabel } : {}),
-      keyIdeas, quotes, episodes: [],
-    };
-
-    const btn = document.getElementById('save-btn');
-    btn.disabled = true; btn.textContent = 'Saving…';
-
-    try {
-      const meta = await fetchCurrentFile();
-      const current = atob(meta.content.replace(/\n/g, ''));
-      const match = current.match(/const sources = (\[[\s\S]*\]);/);
-      if (!match) throw new Error('Could not parse data.js');
-      const allSources = JSON.parse(match[1]);
-      allSources.push(newSource);
-      await pushFile(buildDataJs(allSources), meta.sha, `Add: ${title}`);
-      sources.push(newSource);
-      buildTypeFilters();
-      applyFilters();
-      closeModal();
-      showToast('✓ Saved to library!', 'success');
-    } catch (err) {
-      console.error(err); showToast('Error: ' + err.message, 'error');
-    } finally {
-      btn.disabled = false; btn.textContent = 'Save to library';
-    }
-  }
-
-  // ── CONTEXT MENU ──
-  let ctxTargetSlug = null;
-  let longPressTimer = null;
-  const ctxMenu = document.getElementById('ctx-menu');
-
-  function attachCardListeners() {
-    document.querySelectorAll('a.source-card').forEach(card => {
-      const slug = new URL(card.href).searchParams.get('s');
-      card.addEventListener('contextmenu', e => { e.preventDefault(); showCtxMenu(e.clientX, e.clientY, slug); });
-      card.addEventListener('touchstart', e => { longPressTimer = setTimeout(() => { const t = e.touches[0]; showCtxMenu(t.clientX, t.clientY, slug); }, 600); }, { passive: true });
-      card.addEventListener('touchend', () => clearTimeout(longPressTimer));
-      card.addEventListener('touchmove', () => clearTimeout(longPressTimer));
-    });
-  }
-
-  function showCtxMenu(x, y, slug) {
-    ctxTargetSlug = slug;
-    ctxMenu.style.left = Math.min(x, window.innerWidth - 180) + 'px';
-    ctxMenu.style.top  = Math.min(y, window.innerHeight - 80) + 'px';
-    ctxMenu.classList.add('open');
-  }
-
-  function hideCtxMenu() { ctxMenu.classList.remove('open'); ctxTargetSlug = null; }
-
-  document.addEventListener('click', e => { if (!ctxMenu.contains(e.target)) hideCtxMenu(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') { hideCtxMenu(); closeConfirm(); } });
-
-  document.getElementById('ctx-delete-btn').addEventListener('click', () => {
-    const s = sources.find(x => slugify(x.title) === ctxTargetSlug);
-    const label = s ? s.title : ctxTargetSlug;
-    hideCtxMenu();
-    openConfirm(`Delete "${label}"? All notes and episodes will be lost.`, () => deleteSource(ctxTargetSlug));
-  });
-
-  // ── CONFIRM ──
-  let confirmCallback = null;
-  function openConfirm(msg, cb) {
-    document.getElementById('confirm-msg').textContent = msg;
-    confirmCallback = cb;
-    document.getElementById('confirm-dialog').classList.add('open');
-  }
-  function closeConfirm() { document.getElementById('confirm-dialog').classList.remove('open'); confirmCallback = null; }
-
-  document.getElementById('confirm-delete-btn').addEventListener('click', async () => {
-    if (!confirmCallback) return;
-    const btn = document.getElementById('confirm-delete-btn');
-    btn.disabled = true; btn.textContent = 'Deleting…';
-    await confirmCallback();
-    btn.disabled = false; btn.textContent = 'Delete';
-    closeConfirm();
-  });
-
-  // ── DELETE SOURCE ──
-  async function deleteSource(slug) {
-    try {
-      const meta = await fetchCurrentFile();
-      const current = atob(meta.content.replace(/\n/g, ''));
-      const match = current.match(/const sources = (\[[\s\S]*\]);/);
-      if (!match) throw new Error('Could not parse data.js');
-      const allSources = JSON.parse(match[1]);
-      const idx = allSources.findIndex(s => slugify(s.title) === slug);
-      if (idx === -1) throw new Error('Source not found');
-      const removed = allSources.splice(idx, 1)[0];
-      await pushFile(buildDataJs(allSources), meta.sha, `Delete: ${removed.title}`);
-      const i = sources.findIndex(s => slugify(s.title) === slug);
-      if (i !== -1) sources.splice(i, 1);
-      buildTypeFilters();
-      applyFilters();
-      showToast('✓ Deleted', 'success');
-    } catch (err) { showToast('Error: ' + err.message, 'error'); }
-  }
 </script>
 </body>
 </html>
