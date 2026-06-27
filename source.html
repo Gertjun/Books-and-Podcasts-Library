@@ -141,6 +141,10 @@
       color: var(--ink);
     }
 
+    .note-card--has-image {
+      grid-column: 1 / -1;
+    }
+
     .note-card strong {
       display: block;
       font-size: 0.72rem;
@@ -149,6 +153,16 @@
       text-transform: uppercase;
       color: var(--muted);
       margin-bottom: 0.45rem;
+    }
+
+    .note-card-img {
+      display: block;
+      width: 100%;
+      max-width: 560px;
+      height: auto;
+      border-radius: 6px;
+      margin-top: 0.9rem;
+      border: 1px solid var(--rule);
     }
 
     /* ── QUOTES ── */
@@ -453,7 +467,12 @@
     if (!ideas || !ideas.length) return '';
     return `<p class="section-label">Key Ideas</p>
       <div class="notes-grid">
-        ${ideas.map(idea => `<div class="note-card"><strong>${idea.heading}</strong>${idea.text}</div>`).join('')}
+        ${ideas.map(idea => `
+          <div class="note-card${idea.image ? ' note-card--has-image' : ''}">
+            <strong>${idea.heading}</strong>
+            ${idea.text}
+            ${idea.image ? `<img src="${idea.image}" alt="${idea.imageAlt || idea.heading}" class="note-card-img" />` : ''}
+          </div>`).join('')}
       </div>`;
   }
 

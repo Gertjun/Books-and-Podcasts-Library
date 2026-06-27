@@ -336,20 +336,62 @@ const sources = [
   },
 
   // ── ADD MORE BOOKS OR PODCASTS BELOW ──────────────────────
-  // Copy the block above, change the fields, and add your episodes.
-  // Example:
-  //
-  // {
-  //   title: "The Making of a Manager",
-  //   type: "Book",
-  //   link: "https://example.com",
-  //   linkLabel: "View on Goodreads ↗",
-  //   keyIdeas: [
-  //     { heading: "Great managers...", text: "..." },
-  //   ],
-  //   quotes: [
-  //     { text: "...", attribution: "Julie Zhuo" },
-  //   ],
-  //   episodes: [],
-  // },
+
+  {
+    title: "The Phoenix Project",
+    type: "Book",
+    link: "https://itrevolution.com/product/the-phoenix-project/",
+    linkLabel: "View on IT Revolution ↗",
+
+    keyIdeas: [
+      {
+        heading: "Theory of Constraints",
+        text: "A five-step process: (1) Identify the constraint. (2) Exploit it — maximize its output cheaply. (3) Subordinate everything else to the constraint's pace. (4) Elevate it — invest to increase its capacity. (5) Repeat. Don't let inertia create a new constraint.",
+      },
+      {
+        heading: "Types of Constraints",
+        text: "Constraints are not always physical (machine speed). They can also be policy-based (rules that prevent efficiency), paradigm-based (entrenched beliefs), or market-driven.",
+      },
+      {
+        heading: "Four Types of Work",
+        text: "All IT work falls into four categories: (1) Business Projects, (2) Internal Projects, (3) Changes, and (4) Unplanned Work. Unplanned work is the most dangerous — it disrupts everything else.",
+      },
+      {
+        heading: "Value Stream",
+        text: "Map your value stream: identify all work centers, estimate how long work sits in each, find where it waits the longest — that's your constraint.",
+      },
+      {
+        heading: "Wait Time Formula",
+        text: "Wait time grows exponentially as utilization increases. A resource at 90% busy has far more wait time than one at 50%. Keeping some slack in the system is not waste — it's speed.",
+        image: "images/wait-time.jpeg",
+        imageAlt: "Graph showing Wait Time = (% Busy) / (% Idle) — wait time explodes exponentially as resource utilisation approaches 100%",
+      },
+      {
+        heading: "Personal Reflection",
+        text: "I want to be Bill, but I behave like Brent. I need an Erik.",
+      },
+      {
+        heading: "CFO Goals",
+        text: "Company health · Revenue · Market share · Average order size · Profitability · Return on assets · Finance health · Order-to-cash cycle · Accounts receivable · Accurate financial reporting · Borrowing costs.",
+      },
+      {
+        heading: "Key Business Questions",
+        text: "Are we competitive? Do we know what to build? Do we have the right products? Can we build effectively? Can we ship fast enough? Can we convert prospects? Are customers getting what we promised? Are we gaining or losing customers?",
+      },
+      {
+        heading: "Key Concepts to Explore",
+        text: "COSO Cube · SLA · Forward-looking KPIs · Reduce cycle times · Amplify feedback loops.",
+      },
+    ],
+
+    quotes: [
+      {
+        text: "Wat onderscheidt een goede van een slechte dag voor jou?",
+        attribution: "The Phoenix Project",
+      },
+    ],
+
+    episodes: [],
+  },
+
 ];
