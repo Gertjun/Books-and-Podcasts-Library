@@ -30,7 +30,7 @@
       min-height: 100vh;
     }
 
-    /* ── BACK LINK ── */
+    /* ── BACK BAR ── */
     .back-bar {
       max-width: 860px;
       margin: 0 auto;
@@ -53,8 +53,9 @@
 
     .back-link:hover { color: var(--accent); }
 
-    /* ── ADD EPISODE BUTTON ── */
-    .add-ep-btn {
+    .action-buttons { display: flex; gap: 0.5rem; }
+
+    .action-btn {
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
@@ -69,12 +70,18 @@
       transition: opacity 0.15s;
     }
 
-    .add-ep-btn:hover { opacity: 0.88; }
+    .action-btn:hover { opacity: 0.88; }
+
+    .action-btn--secondary {
+      background: none;
+      color: var(--accent);
+      border: 1.5px solid var(--accent);
+    }
 
     /* ── HEADER ── */
     header {
       border-bottom: 2px solid var(--ink);
-      padding: 2rem 2rem 2rem;
+      padding: 2rem;
       max-width: 860px;
       margin: 0 auto;
     }
@@ -141,9 +148,7 @@
       color: var(--ink);
     }
 
-    .note-card--has-image {
-      grid-column: 1 / -1;
-    }
+    .note-card--has-image { grid-column: 1 / -1; }
 
     .note-card strong {
       display: block;
@@ -192,11 +197,7 @@
     }
 
     /* ── EPISODES ── */
-    .episodes-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
+    .episodes-list { display: flex; flex-direction: column; gap: 0.6rem; }
 
     details.episode {
       background: var(--card);
@@ -225,16 +226,12 @@
 
     .ep-num {
       flex-shrink: 0;
-      width: 2rem;
-      height: 2rem;
+      width: 2rem; height: 2rem;
       border-radius: 50%;
       background: var(--tip-bg);
       color: var(--accent);
-      font-size: 0.72rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      font-size: 0.72rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
     }
 
     details.episode[open] .ep-num { background: var(--accent); color: #fff; }
@@ -249,10 +246,7 @@
 
     details.episode[open] .ep-arrow { transform: rotate(180deg); }
 
-    .episode-body {
-      padding: 0 1.25rem 1.25rem;
-      border-top: 1px solid var(--rule);
-    }
+    .episode-body { padding: 0 1.25rem 1.25rem; border-top: 1px solid var(--rule); }
 
     /* ── TIPS ── */
     .tips { display: flex; flex-direction: column; gap: 0.45rem; margin: 1rem 0; }
@@ -273,7 +267,6 @@
 
     /* ── Q&A ── */
     .qa-section { margin-top: 1.1rem; }
-
     .qa-item { border-top: 1px solid var(--rule); padding: 0.85rem 0; }
     .qa-item:first-child { border-top: none; }
     .qa-q { font-weight: 600; font-size: 0.88rem; color: var(--ink); margin-bottom: 0.35rem; }
@@ -380,7 +373,6 @@
     .toast.success { background: var(--green); }
     .toast.error   { background: #b03a2e; }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
       .back-bar, header, main { padding-left: 1.1rem; padding-right: 1.1rem; }
       .modal { padding: 1.4rem; }
@@ -396,17 +388,14 @@
     </svg>
     My Library
   </a>
-  <button class="add-ep-btn" onclick="openEpModal()">
-    <svg width="12" height="12" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg>
-    Add episode
-  </button>
+  <div class="action-buttons" id="action-buttons"></div>
 </div>
 
 <header id="page-header"></header>
 <main id="app"></main>
 
 <!-- ADD EPISODE MODAL -->
-<div class="modal-overlay" id="ep-modal-overlay" onclick="handleOverlayClick(event)">
+<div class="modal-overlay" id="ep-modal-overlay">
   <div class="modal">
     <button class="modal-close" onclick="closeEpModal()">✕</button>
     <h2 class="modal-title">Add an episode</h2>
@@ -423,13 +412,13 @@
 
     <div class="form-group">
       <label>Tips (optional)</label>
-      <textarea id="ep-tips" placeholder="One tip per line&#10;e.g. Be specific, not general.&#10;Follow up in writing."></textarea>
+      <textarea id="ep-tips" placeholder="One tip per line&#10;e.g. Be specific, not general."></textarea>
       <p class="form-hint">Each line becomes a tip card.</p>
     </div>
 
     <div class="form-group">
       <label>Q&amp;A (optional)</label>
-      <textarea id="ep-qa" placeholder="One Q&A per line. Format: Question | Answer&#10;e.g. Why does this work? | Because it builds trust over time."></textarea>
+      <textarea id="ep-qa" placeholder="One Q&A per line. Format: Question | Answer"></textarea>
       <p class="form-hint">Use <strong>Question | Answer</strong> per line.</p>
     </div>
 
@@ -440,18 +429,42 @@
   </div>
 </div>
 
+<!-- ADD NOTE MODAL -->
+<div class="modal-overlay" id="note-modal-overlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeNoteModal()">✕</button>
+    <h2 class="modal-title">Add a note</h2>
+
+    <div class="form-group">
+      <label>Heading *</label>
+      <input type="text" id="note-heading" placeholder="e.g. On Leadership" />
+    </div>
+
+    <div class="form-group">
+      <label>Note *</label>
+      <textarea id="note-text" placeholder="Write your note here…" style="min-height:120px;"></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn-secondary" onclick="closeNoteModal()">Cancel</button>
+      <button class="btn-primary" id="note-save-btn" onclick="saveNote()">Save note</button>
+    </div>
+  </div>
+</div>
+
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <script src="data.js"></script>
 <script>
   // ── CONFIG ──
-  const GITHUB_USER = 'Gertjun';
-  const GITHUB_REPO = 'Book-and-Podcasts-Library';
-  const GITHUB_FILE = 'data.js';
+  const GITHUB_USER  = 'Gertjun';
+  const GITHUB_REPO  = 'Book-and-Podcasts-Library';
+  const GITHUB_FILE  = 'data.js';
   const GITHUB_TOKEN = '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';
-  const API_BASE    = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
+  const API_BASE     = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
 
+  const PLUS_ICON = `<svg width="12" height="12" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg>`;
   const ARROW_SVG = `<svg class="ep-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 8 10 13 15 8"/></svg>`;
 
   function slugify(str) {
@@ -462,11 +475,36 @@
     return new URLSearchParams(window.location.search).get('s') || '';
   }
 
-  // ── RENDER ──
+  // ── DETECT TYPE ──
+  function isBookType(source) {
+    const t = (source.type || '').toLowerCase();
+    return t === 'book' || t === 'article' || t === 'other';
+  }
+
+  // ── RENDER ACTION BUTTONS ──
+  function renderActionButtons(source) {
+    const btn = document.getElementById('action-buttons');
+    if (isBookType(source)) {
+      btn.innerHTML = `
+        <button class="action-btn" onclick="openNoteModal()">
+          ${PLUS_ICON} Add note
+        </button>`;
+    } else {
+      btn.innerHTML = `
+        <button class="action-btn" onclick="openEpModal()">
+          ${PLUS_ICON} Add episode
+        </button>
+        <button class="action-btn action-btn--secondary" onclick="openNoteModal()">
+          ${PLUS_ICON} Add note
+        </button>`;
+    }
+  }
+
+  // ── RENDER KEY IDEAS ──
   function renderKeyIdeas(ideas) {
     if (!ideas || !ideas.length) return '';
     return `<p class="section-label">Key Ideas</p>
-      <div class="notes-grid">
+      <div class="notes-grid" id="notes-grid">
         ${ideas.map(idea => `
           <div class="note-card${idea.image ? ' note-card--has-image' : ''}">
             <strong>${idea.heading}</strong>
@@ -506,23 +544,28 @@
   function renderSource(source) {
     currentSource = source;
     document.title = source.title;
+
     document.getElementById('page-header').innerHTML = `
       <p class="eyebrow">${source.type}</p>
       <h1>${source.title}</h1>
       ${source.link ? `<a class="source-link" href="${source.link}" target="_blank" rel="noopener">${source.linkLabel || 'View source ↗'}</a>` : ''}`;
 
+    renderActionButtons(source);
+
     const hasEpisodes = source.episodes && source.episodes.length;
-    const episodesHTML = hasEpisodes ? `
+    const showEpisodeSection = !isBookType(source);
+
+    const episodesHTML = showEpisodeSection ? `
       <p class="section-label">Episodes</p>
       <div class="controls">
         <button class="ctrl-btn" onclick="setAll(true)">Expand all</button>
         <button class="ctrl-btn" onclick="setAll(false)">Collapse all</button>
       </div>
       <div class="episodes-list" id="episodes-list">
-        ${source.episodes.map(renderEpisode).join('')}
-      </div>` : `
-      <p class="section-label">Episodes</p>
-      <p style="font-size:0.9rem;color:var(--muted);padding:1rem 0;">No episodes yet — tap "Add episode" to get started.</p>`;
+        ${hasEpisodes
+          ? source.episodes.map(renderEpisode).join('')
+          : `<p style="font-size:0.9rem;color:var(--muted);padding:1rem 0;">No episodes yet — tap "Add episode" to get started.</p>`}
+      </div>` : '';
 
     document.getElementById('app').innerHTML =
       renderKeyIdeas(source.keyIdeas) +
@@ -549,25 +592,6 @@
   const source = (sources || []).find(s => slugify(s.title) === slug);
   source ? renderSource(source) : renderNotFound(slug);
 
-  // ── EPISODE MODAL ──
-  function openEpModal() {
-    if (!currentSource) return;
-    // Pre-fill episode number
-    const nextNum = ((currentSource.episodes || []).length) + 1;
-    document.getElementById('ep-number').value = nextNum;
-    document.getElementById('ep-modal-overlay').classList.add('open');
-    document.getElementById('ep-title').focus();
-  }
-
-  function closeEpModal() {
-    document.getElementById('ep-modal-overlay').classList.remove('open');
-    ['ep-title','ep-tips','ep-qa'].forEach(id => document.getElementById(id).value = '');
-  }
-
-  function handleOverlayClick(e) {
-    if (e.target.id === 'ep-modal-overlay') closeEpModal();
-  }
-
   // ── TOAST ──
   function showToast(msg, type = '') {
     const t = document.getElementById('toast');
@@ -576,39 +600,73 @@
     setTimeout(() => { t.className = 'toast'; }, 3500);
   }
 
-  // ── SAVE EPISODE ──
+  // ── GITHUB HELPERS ──
+  async function fetchCurrentFile() {
+    const res = await fetch(API_BASE, {
+      headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github+json' }
+    });
+    if (!res.ok) throw new Error(`GitHub read failed: ${res.status}`);
+    return res.json();
+  }
+
+  async function pushFile(content, sha, message) {
+    const encoded = btoa(unescape(encodeURIComponent(content)));
+    const res = await fetch(API_BASE, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github+json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message, content: encoded, sha }),
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.message || `GitHub write failed: ${res.status}`);
+    }
+  }
+
+  function buildDataJs(sourcesArray) {
+    return `// ============================================================
+//  DATA FILE — add books, podcasts, notes and episodes here
+// ============================================================
+
+const sources = ${JSON.stringify(sourcesArray, null, 2)};
+`;
+  }
+
+  // ── EPISODE MODAL ──
+  function openEpModal() {
+    if (!currentSource) return;
+    const nextNum = ((currentSource.episodes || []).length) + 1;
+    document.getElementById('ep-number').value = nextNum;
+    document.getElementById('ep-modal-overlay').classList.add('open');
+    setTimeout(() => document.getElementById('ep-title').focus(), 50);
+  }
+
+  function closeEpModal() {
+    document.getElementById('ep-modal-overlay').classList.remove('open');
+    ['ep-title','ep-tips','ep-qa'].forEach(id => document.getElementById(id).value = '');
+  }
+
   async function saveEpisode() {
     const number = parseInt(document.getElementById('ep-number').value);
     const title  = document.getElementById('ep-title').value.trim();
     if (!title || isNaN(number)) { showToast('Please fill in number and title.', 'error'); return; }
 
-    const tipsRaw = document.getElementById('ep-tips').value.trim();
-    const qaRaw   = document.getElementById('ep-qa').value.trim();
-
-    const tips = tipsRaw ? tipsRaw.split('\n').map(l => l.trim()).filter(Boolean) : [];
-    const qa   = qaRaw ? qaRaw.split('\n').map(l => l.trim()).filter(Boolean).map(l => {
+    const tips = document.getElementById('ep-tips').value.trim().split('\n').map(l => l.trim()).filter(Boolean);
+    const qa   = document.getElementById('ep-qa').value.trim().split('\n').map(l => l.trim()).filter(Boolean).map(l => {
       const parts = l.split('|').map(p => p.trim());
       return { q: parts[0], a: parts[1] || '' };
-    }) : [];
-
-    const newEp = { number, title, tips, qa };
+    });
 
     const btn = document.getElementById('ep-save-btn');
-    btn.disabled = true;
-    btn.textContent = 'Saving…';
+    btn.disabled = true; btn.textContent = 'Saving…';
 
     try {
-      // 1. Fetch current file
-      const metaRes = await fetch(API_BASE, {
-        headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github+json' }
-      });
-      if (!metaRes.ok) throw new Error(`GitHub read failed: ${metaRes.status}`);
-      const meta = await metaRes.json();
-      const sha = meta.sha;
-
-      // 2. Parse, update, rebuild
-      const currentContent = atob(meta.content.replace(/\n/g, ''));
-      const match = currentContent.match(/const sources = (\[[\s\S]*\]);/);
+      const meta = await fetchCurrentFile();
+      const current = atob(meta.content.replace(/\n/g, ''));
+      const match = current.match(/const sources = (\[[\s\S]*\]);/);
       if (!match) throw new Error('Could not parse data.js');
 
       const allSources = JSON.parse(match[1]);
@@ -616,70 +674,78 @@
       if (idx === -1) throw new Error('Source not found in data.js');
 
       allSources[idx].episodes = allSources[idx].episodes || [];
-      allSources[idx].episodes.push(newEp);
+      allSources[idx].episodes.push({ number, title, tips, qa });
 
-      const newDataJs = buildDataJs(allSources);
-      const encoded = btoa(unescape(encodeURIComponent(newDataJs)));
+      await pushFile(buildDataJs(allSources), meta.sha, `Add episode: ${title}`);
 
-      // 3. Push
-      const pushRes = await fetch(API_BASE, {
-        method: 'PUT',
-        headers: {
-          'Authorization': `Bearer ${GITHUB_TOKEN}`,
-          'Accept': 'application/vnd.github+json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message: `Add episode: ${title}`, content: encoded, sha }),
-      });
-
-      if (!pushRes.ok) {
-        const err = await pushRes.json();
-        throw new Error(err.message || `GitHub write failed: ${pushRes.status}`);
-      }
-
-      // 4. Update local and re-render
       currentSource.episodes = currentSource.episodes || [];
-      currentSource.episodes.push(newEp);
+      currentSource.episodes.push({ number, title, tips, qa });
       renderSource(currentSource);
       closeEpModal();
       showToast('✓ Episode saved!', 'success');
-
     } catch (err) {
       console.error(err);
       showToast('Error: ' + err.message, 'error');
     } finally {
-      btn.disabled = false;
-      btn.textContent = 'Save episode';
+      btn.disabled = false; btn.textContent = 'Save episode';
     }
   }
 
-  // ── BUILD data.js ──
-  function buildDataJs(sourcesArray) {
-    const json = JSON.stringify(sourcesArray, null, 2);
-    return `// ============================================================
-//  DATA FILE — add books, podcasts, notes and episodes here
-//
-//  STRUCTURE:
-//  Each entry in \`sources\` is a book or podcast.
-//  Each source has:
-//    - title       : displayed as the page/section heading
-//    - type        : "book" | "podcast" (shown as eyebrow label)
-//    - link        : optional URL shown below the title
-//    - linkLabel   : label for the link (default: "View source ↗")
-//    - keyIdeas    : array of { heading, text } cards
-//    - quotes      : array of { text, attribution } blockquotes
-//    - episodes    : array of episode objects (see below)
-//
-//  EPISODE STRUCTURE:
-//    - number  : episode number (shown in the badge)
-//    - title   : episode title
-//    - tips    : array of tip strings
-//    - qa      : array of { q, a } objects  ← optional
-// ============================================================
-
-const sources = ${json};
-`;
+  // ── NOTE MODAL ──
+  function openNoteModal() {
+    if (!currentSource) return;
+    document.getElementById('note-modal-overlay').classList.add('open');
+    setTimeout(() => document.getElementById('note-heading').focus(), 50);
   }
+
+  function closeNoteModal() {
+    document.getElementById('note-modal-overlay').classList.remove('open');
+    ['note-heading','note-text'].forEach(id => document.getElementById(id).value = '');
+  }
+
+  async function saveNote() {
+    const heading = document.getElementById('note-heading').value.trim();
+    const text    = document.getElementById('note-text').value.trim();
+    if (!heading || !text) { showToast('Please fill in both fields.', 'error'); return; }
+
+    const btn = document.getElementById('note-save-btn');
+    btn.disabled = true; btn.textContent = 'Saving…';
+
+    try {
+      const meta = await fetchCurrentFile();
+      const current = atob(meta.content.replace(/\n/g, ''));
+      const match = current.match(/const sources = (\[[\s\S]*\]);/);
+      if (!match) throw new Error('Could not parse data.js');
+
+      const allSources = JSON.parse(match[1]);
+      const idx = allSources.findIndex(s => slugify(s.title) === slug);
+      if (idx === -1) throw new Error('Source not found in data.js');
+
+      allSources[idx].keyIdeas = allSources[idx].keyIdeas || [];
+      allSources[idx].keyIdeas.push({ heading, text });
+
+      await pushFile(buildDataJs(allSources), meta.sha, `Add note: ${heading}`);
+
+      currentSource.keyIdeas = currentSource.keyIdeas || [];
+      currentSource.keyIdeas.push({ heading, text });
+      renderSource(currentSource);
+      closeNoteModal();
+      showToast('✓ Note saved!', 'success');
+    } catch (err) {
+      console.error(err);
+      showToast('Error: ' + err.message, 'error');
+    } finally {
+      btn.disabled = false; btn.textContent = 'Save note';
+    }
+  }
+
+  // Close modals on overlay click
+  document.getElementById('ep-modal-overlay').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeEpModal();
+  });
+  document.getElementById('note-modal-overlay').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeNoteModal();
+  });
 </script>
 </body>
 </html>
