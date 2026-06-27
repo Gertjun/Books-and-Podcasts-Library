@@ -15,6 +15,8 @@
       --rule:      #e0dbd3;
       --card:      #ffffff;
       --tip-bg:    #f0ede8;
+      --green:     #2a7a4f;
+      --green-lt:  #e6f4ed;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,6 +35,9 @@
       max-width: 860px;
       margin: 0 auto;
       padding: 1.5rem 2rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .back-link {
@@ -43,11 +48,28 @@
       font-weight: 600;
       color: var(--muted);
       text-decoration: none;
-      letter-spacing: 0.02em;
       transition: color 0.15s;
     }
 
     .back-link:hover { color: var(--accent); }
+
+    /* ── ADD EPISODE BUTTON ── */
+    .add-ep-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.45rem 1rem;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+
+    .add-ep-btn:hover { opacity: 0.88; }
 
     /* ── HEADER ── */
     header {
@@ -201,23 +223,13 @@
       justify-content: center;
     }
 
-    details.episode[open] .ep-num {
-      background: var(--accent);
-      color: #fff;
-    }
+    details.episode[open] .ep-num { background: var(--accent); color: #fff; }
 
-    .ep-title {
-      flex: 1;
-      font-weight: 600;
-      font-size: 0.97rem;
-      color: var(--ink);
-    }
+    .ep-title { flex: 1; font-weight: 600; font-size: 0.97rem; color: var(--ink); }
 
     .ep-arrow {
-      width: 1.1rem;
-      height: 1.1rem;
-      color: var(--muted);
-      flex-shrink: 0;
+      width: 1.1rem; height: 1.1rem;
+      color: var(--muted); flex-shrink: 0;
       transition: transform 0.2s;
     }
 
@@ -229,100 +241,135 @@
     }
 
     /* ── TIPS ── */
-    .tips {
-      display: flex;
-      flex-direction: column;
-      gap: 0.45rem;
-      margin: 1rem 0;
-    }
+    .tips { display: flex; flex-direction: column; gap: 0.45rem; margin: 1rem 0; }
 
     .tip {
-      display: flex;
-      gap: 0.7rem;
-      align-items: flex-start;
-      background: var(--tip-bg);
-      border-radius: 6px;
-      padding: 0.55rem 0.8rem;
-      font-size: 0.88rem;
+      display: flex; gap: 0.7rem; align-items: flex-start;
+      background: var(--tip-bg); border-radius: 6px;
+      padding: 0.55rem 0.8rem; font-size: 0.88rem;
     }
 
     .tip-icon {
-      flex-shrink: 0;
-      color: var(--accent);
-      font-size: 0.75rem;
-      font-weight: 700;
-      margin-top: 0.15rem;
-      background: var(--accent-lt);
-      border: 1px solid var(--accent);
-      border-radius: 4px;
-      padding: 0.1rem 0.5rem;
-      letter-spacing: 0.04em;
-      white-space: nowrap;
+      flex-shrink: 0; color: var(--accent); font-size: 0.75rem;
+      font-weight: 700; margin-top: 0.15rem;
+      background: var(--accent-lt); border: 1px solid var(--accent);
+      border-radius: 4px; padding: 0.1rem 0.5rem;
+      letter-spacing: 0.04em; white-space: nowrap;
     }
 
     /* ── Q&A ── */
     .qa-section { margin-top: 1.1rem; }
 
-    .qa-item {
-      border-top: 1px solid var(--rule);
-      padding: 0.85rem 0;
-    }
-
+    .qa-item { border-top: 1px solid var(--rule); padding: 0.85rem 0; }
     .qa-item:first-child { border-top: none; }
-
-    .qa-q {
-      font-weight: 600;
-      font-size: 0.88rem;
-      color: var(--ink);
-      margin-bottom: 0.35rem;
-    }
-
-    .qa-a {
-      font-size: 0.87rem;
-      color: #3d3730;
-      line-height: 1.65;
-    }
+    .qa-q { font-weight: 600; font-size: 0.88rem; color: var(--ink); margin-bottom: 0.35rem; }
+    .qa-a { font-size: 0.87rem; color: #3d3730; line-height: 1.65; }
 
     /* ── CONTROLS ── */
-    .controls {
-      display: flex;
-      gap: 0.6rem;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-    }
+    .controls { display: flex; gap: 0.6rem; margin-bottom: 1rem; flex-wrap: wrap; }
 
     .ctrl-btn {
-      font-size: 0.78rem;
-      font-weight: 600;
-      padding: 0.35rem 0.85rem;
-      border-radius: 20px;
-      border: 1.5px solid var(--rule);
-      background: var(--card);
-      color: var(--muted);
-      cursor: pointer;
-      transition: all 0.15s;
+      font-size: 0.78rem; font-weight: 600;
+      padding: 0.35rem 0.85rem; border-radius: 20px;
+      border: 1.5px solid var(--rule); background: var(--card);
+      color: var(--muted); cursor: pointer; transition: all 0.15s;
     }
 
     .ctrl-btn:hover { border-color: var(--accent); color: var(--accent); }
 
     /* ── NOT FOUND ── */
-    .not-found {
-      padding: 4rem 0;
-      color: var(--muted);
-    }
-
-    .not-found h2 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.8rem;
-      color: var(--ink);
-      margin-bottom: 0.5rem;
-    }
-
+    .not-found { padding: 4rem 0; color: var(--muted); }
+    .not-found h2 { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--ink); margin-bottom: 0.5rem; }
     .not-found a { color: var(--accent); }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(26,26,26,0.55); z-index: 100;
+      align-items: center; justify-content: center; padding: 1rem;
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: var(--card); border-radius: 16px;
+      width: 100%; max-width: 520px; max-height: 90vh;
+      overflow-y: auto; padding: 2rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2); position: relative;
+    }
+
+    .modal-title { font-family: 'DM Serif Display', serif; font-size: 1.5rem; margin-bottom: 1.4rem; color: var(--ink); }
+
+    .modal-close {
+      position: absolute; top: 1.2rem; right: 1.2rem;
+      background: none; border: none; font-size: 1.3rem;
+      color: var(--muted); cursor: pointer;
+    }
+
+    .modal-close:hover { color: var(--ink); }
+
+    /* ── FORM ── */
+    .form-group { margin-bottom: 1rem; }
+
+    .form-group label {
+      display: block; font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.4rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%; font-family: 'Inter', sans-serif;
+      font-size: 0.92rem; color: var(--ink);
+      background: var(--paper); border: 1.5px solid var(--rule);
+      border-radius: 8px; padding: 0.6rem 0.85rem;
+      outline: none; transition: border-color 0.15s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--accent); }
+
+    .form-group textarea { resize: vertical; min-height: 70px; }
+    .form-hint { font-size: 0.76rem; color: var(--muted); margin-top: 0.3rem; }
+
+    .form-actions { display: flex; gap: 0.7rem; margin-top: 1.4rem; }
+
+    .btn-primary {
+      flex: 1; background: var(--accent); color: #fff;
+      border: none; border-radius: 24px; padding: 0.7rem 1.2rem;
+      font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: opacity 0.15s;
+    }
+
+    .btn-primary:hover { opacity: 0.88; }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .btn-secondary {
+      background: none; border: 1.5px solid var(--rule); border-radius: 24px;
+      padding: 0.7rem 1.2rem; font-size: 0.88rem; font-weight: 600;
+      color: var(--muted); cursor: pointer; transition: border-color 0.15s, color 0.15s;
+    }
+
+    .btn-secondary:hover { border-color: var(--ink); color: var(--ink); }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed; bottom: 2rem; left: 50%;
+      transform: translateX(-50%) translateY(4rem);
+      background: var(--ink); color: #fff;
+      font-size: 0.85rem; font-weight: 500;
+      padding: 0.7rem 1.4rem; border-radius: 24px;
+      z-index: 200; opacity: 0; transition: opacity 0.25s, transform 0.25s;
+      white-space: nowrap;
+    }
+
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .toast.success { background: var(--green); }
+    .toast.error   { background: #b03a2e; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
       .back-bar, header, main { padding-left: 1.1rem; padding-right: 1.1rem; }
+      .modal { padding: 1.4rem; }
     }
   </style>
 </head>
@@ -335,13 +382,62 @@
     </svg>
     My Library
   </a>
+  <button class="add-ep-btn" onclick="openEpModal()">
+    <svg width="12" height="12" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg>
+    Add episode
+  </button>
 </div>
 
 <header id="page-header"></header>
 <main id="app"></main>
 
+<!-- ADD EPISODE MODAL -->
+<div class="modal-overlay" id="ep-modal-overlay" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeEpModal()">✕</button>
+    <h2 class="modal-title">Add an episode</h2>
+
+    <div class="form-group">
+      <label>Episode number *</label>
+      <input type="number" id="ep-number" placeholder="e.g. 18" min="1" />
+    </div>
+
+    <div class="form-group">
+      <label>Episode title *</label>
+      <input type="text" id="ep-title" placeholder="e.g. How to Give Feedback Remotely" />
+    </div>
+
+    <div class="form-group">
+      <label>Tips (optional)</label>
+      <textarea id="ep-tips" placeholder="One tip per line&#10;e.g. Be specific, not general.&#10;Follow up in writing."></textarea>
+      <p class="form-hint">Each line becomes a tip card.</p>
+    </div>
+
+    <div class="form-group">
+      <label>Q&amp;A (optional)</label>
+      <textarea id="ep-qa" placeholder="One Q&A per line. Format: Question | Answer&#10;e.g. Why does this work? | Because it builds trust over time."></textarea>
+      <p class="form-hint">Use <strong>Question | Answer</strong> per line.</p>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn-secondary" onclick="closeEpModal()">Cancel</button>
+      <button class="btn-primary" id="ep-save-btn" onclick="saveEpisode()">Save episode</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
 <script src="data.js"></script>
 <script>
+  // ── CONFIG ──
+  const GITHUB_USER = 'Gertjun';
+  const GITHUB_REPO = 'Book-and-Podcasts-Library';
+  const GITHUB_FILE = 'data.js';
+  const GITHUB_TOKEN = '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';
+  const API_BASE    = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
+
   const ARROW_SVG = `<svg class="ep-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 8 10 13 15 8"/></svg>`;
 
   function slugify(str) {
@@ -352,46 +448,29 @@
     return new URLSearchParams(window.location.search).get('s') || '';
   }
 
+  // ── RENDER ──
   function renderKeyIdeas(ideas) {
     if (!ideas || !ideas.length) return '';
-    return `
-      <p class="section-label">Key Ideas</p>
+    return `<p class="section-label">Key Ideas</p>
       <div class="notes-grid">
-        ${ideas.map(idea => `
-          <div class="note-card">
-            <strong>${idea.heading}</strong>
-            ${idea.text}
-          </div>`).join('')}
+        ${ideas.map(idea => `<div class="note-card"><strong>${idea.heading}</strong>${idea.text}</div>`).join('')}
       </div>`;
   }
 
   function renderQuotes(quotes) {
     if (!quotes || !quotes.length) return '';
     return quotes.map(q => `
-      <div class="quote-block">
-        <p>${q.text}</p>
-        <cite>— ${q.attribution}</cite>
-      </div>`).join('');
+      <div class="quote-block"><p>${q.text}</p><cite>— ${q.attribution}</cite></div>`).join('');
   }
 
   function renderEpisode(ep) {
     const tipsHTML = (ep.tips && ep.tips.length)
-      ? `<div class="tips">${ep.tips.map((tip, i) => `
-          <div class="tip"><span class="tip-icon">Tip ${i + 1}</span>${tip}</div>`).join('')}
-        </div>` : '';
-
+      ? `<div class="tips">${ep.tips.map((tip, i) => `<div class="tip"><span class="tip-icon">Tip ${i + 1}</span>${tip}</div>`).join('')}</div>` : '';
     const qaHTML = (ep.qa && ep.qa.length)
-      ? `<div class="qa-section">${ep.qa.map(item => `
-          <div class="qa-item">
-            <p class="qa-q">${item.q}</p>
-            <p class="qa-a">${item.a}</p>
-          </div>`).join('')}
-        </div>` : '';
-
+      ? `<div class="qa-section">${ep.qa.map(item => `<div class="qa-item"><p class="qa-q">${item.q}</p><p class="qa-a">${item.a}</p></div>`).join('')}</div>` : '';
     const body = (tipsHTML || qaHTML)
       ? tipsHTML + qaHTML
       : `<p style="font-size:0.88rem;color:var(--muted);padding-top:0.9rem;">No notes recorded for this episode yet.</p>`;
-
     return `
       <details class="episode">
         <summary>
@@ -403,16 +482,16 @@
       </details>`;
   }
 
-  function renderSource(source) {
-    document.title = source.title;
+  let currentSource = null;
 
-    // Header
+  function renderSource(source) {
+    currentSource = source;
+    document.title = source.title;
     document.getElementById('page-header').innerHTML = `
       <p class="eyebrow">${source.type}</p>
       <h1>${source.title}</h1>
       ${source.link ? `<a class="source-link" href="${source.link}" target="_blank" rel="noopener">${source.linkLabel || 'View source ↗'}</a>` : ''}`;
 
-    // Body
     const hasEpisodes = source.episodes && source.episodes.length;
     const episodesHTML = hasEpisodes ? `
       <p class="section-label">Episodes</p>
@@ -422,7 +501,9 @@
       </div>
       <div class="episodes-list" id="episodes-list">
         ${source.episodes.map(renderEpisode).join('')}
-      </div>` : '';
+      </div>` : `
+      <p class="section-label">Episodes</p>
+      <p style="font-size:0.9rem;color:var(--muted);padding:1rem 0;">No episodes yet — tap "Add episode" to get started.</p>`;
 
     document.getElementById('app').innerHTML =
       renderKeyIdeas(source.keyIdeas) +
@@ -448,6 +529,138 @@
   const slug = getSlugParam();
   const source = (sources || []).find(s => slugify(s.title) === slug);
   source ? renderSource(source) : renderNotFound(slug);
+
+  // ── EPISODE MODAL ──
+  function openEpModal() {
+    if (!currentSource) return;
+    // Pre-fill episode number
+    const nextNum = ((currentSource.episodes || []).length) + 1;
+    document.getElementById('ep-number').value = nextNum;
+    document.getElementById('ep-modal-overlay').classList.add('open');
+    document.getElementById('ep-title').focus();
+  }
+
+  function closeEpModal() {
+    document.getElementById('ep-modal-overlay').classList.remove('open');
+    ['ep-title','ep-tips','ep-qa'].forEach(id => document.getElementById(id).value = '');
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target.id === 'ep-modal-overlay') closeEpModal();
+  }
+
+  // ── TOAST ──
+  function showToast(msg, type = '') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast show ' + type;
+    setTimeout(() => { t.className = 'toast'; }, 3500);
+  }
+
+  // ── SAVE EPISODE ──
+  async function saveEpisode() {
+    const number = parseInt(document.getElementById('ep-number').value);
+    const title  = document.getElementById('ep-title').value.trim();
+    if (!title || isNaN(number)) { showToast('Please fill in number and title.', 'error'); return; }
+
+    const tipsRaw = document.getElementById('ep-tips').value.trim();
+    const qaRaw   = document.getElementById('ep-qa').value.trim();
+
+    const tips = tipsRaw ? tipsRaw.split('\n').map(l => l.trim()).filter(Boolean) : [];
+    const qa   = qaRaw ? qaRaw.split('\n').map(l => l.trim()).filter(Boolean).map(l => {
+      const parts = l.split('|').map(p => p.trim());
+      return { q: parts[0], a: parts[1] || '' };
+    }) : [];
+
+    const newEp = { number, title, tips, qa };
+
+    const btn = document.getElementById('ep-save-btn');
+    btn.disabled = true;
+    btn.textContent = 'Saving…';
+
+    try {
+      // 1. Fetch current file
+      const metaRes = await fetch(API_BASE, {
+        headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github+json' }
+      });
+      if (!metaRes.ok) throw new Error(`GitHub read failed: ${metaRes.status}`);
+      const meta = await metaRes.json();
+      const sha = meta.sha;
+
+      // 2. Parse, update, rebuild
+      const currentContent = atob(meta.content.replace(/\n/g, ''));
+      const match = currentContent.match(/const sources = (\[[\s\S]*\]);/);
+      if (!match) throw new Error('Could not parse data.js');
+
+      const allSources = JSON.parse(match[1]);
+      const idx = allSources.findIndex(s => slugify(s.title) === slug);
+      if (idx === -1) throw new Error('Source not found in data.js');
+
+      allSources[idx].episodes = allSources[idx].episodes || [];
+      allSources[idx].episodes.push(newEp);
+
+      const newDataJs = buildDataJs(allSources);
+      const encoded = btoa(unescape(encodeURIComponent(newDataJs)));
+
+      // 3. Push
+      const pushRes = await fetch(API_BASE, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${GITHUB_TOKEN}`,
+          'Accept': 'application/vnd.github+json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: `Add episode: ${title}`, content: encoded, sha }),
+      });
+
+      if (!pushRes.ok) {
+        const err = await pushRes.json();
+        throw new Error(err.message || `GitHub write failed: ${pushRes.status}`);
+      }
+
+      // 4. Update local and re-render
+      currentSource.episodes = currentSource.episodes || [];
+      currentSource.episodes.push(newEp);
+      renderSource(currentSource);
+      closeEpModal();
+      showToast('✓ Episode saved!', 'success');
+
+    } catch (err) {
+      console.error(err);
+      showToast('Error: ' + err.message, 'error');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Save episode';
+    }
+  }
+
+  // ── BUILD data.js ──
+  function buildDataJs(sourcesArray) {
+    const json = JSON.stringify(sourcesArray, null, 2);
+    return `// ============================================================
+//  DATA FILE — add books, podcasts, notes and episodes here
+//
+//  STRUCTURE:
+//  Each entry in \`sources\` is a book or podcast.
+//  Each source has:
+//    - title       : displayed as the page/section heading
+//    - type        : "book" | "podcast" (shown as eyebrow label)
+//    - link        : optional URL shown below the title
+//    - linkLabel   : label for the link (default: "View source ↗")
+//    - keyIdeas    : array of { heading, text } cards
+//    - quotes      : array of { text, attribution } blockquotes
+//    - episodes    : array of episode objects (see below)
+//
+//  EPISODE STRUCTURE:
+//    - number  : episode number (shown in the badge)
+//    - title   : episode title
+//    - tips    : array of tip strings
+//    - qa      : array of { q, a } objects  ← optional
+// ============================================================
+
+const sources = ${json};
+`;
+  }
 </script>
 </body>
 </html>
